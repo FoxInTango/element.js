@@ -1,8 +1,8 @@
-static var dom_element_map = new Map();
+window.element_map = new Map();
 
 // 宿主 提供公共元素获取
 
-class element
+class UIElement
 {
     constructor()
     {
@@ -10,42 +10,47 @@ class element
         this.event_listeners = null;
     }
 
-    function setAttribute(target,options) {
+    setAttribute(target,options) {
 
     }
 
-    function getAttribute(name) {
+    getAttribute(name) {
 
     }
 }
 
-class UIView extends element {
+class UIView extends UIElement{
 
 }
 
 class element_event
 {
-    var x;
-    var y;
+    constructor() {
+        this.x = null;
+        this.y = null;
+    }
 }
 
 class element_event_handler
 {
-    function mouse_moved(e,x,y);
-    function mouse_down(e,x,y);
-    function mouse_up(e,x,y);
+    constructor() {
+        this.mouse_moved = function (e, x, y) { }
+        this.mouse_down = function (e, x, y) { }(e, x, y);
+        this.mouse_up = function (e, x, y) { }(e, x, y);
 
-    function touch_began(e,x,y);
-    function touch_moved(e,x,y);
-    function touch_ended(e,x,y);
+        this.touch_began = function (e, x, y) { }(e, x, y);
+        this.touch_moved = function (e, x, y) { }(e, x, y);
+        this.touch_ended = function (e, x, y) { }(e, x, y);
 
-    function text_changed(e,x,y);
+        text_changed = function (e, x, y) { }(e, x, y);
+    }
 }
 
 class UIElementEventListener extends element_event_handler
 {
-    this.mouseMoved = function(e,x,y)
-    {}
+    constructor() {
+        this.mouseMoved = function (e, x, y) { }
+    }
 }
 
 class dom_element
