@@ -1,81 +1,6 @@
 window.element_map = new Map();
 
-// 宿主 提供公共元素获取
-
-class UIElement
-{
-    constructor()
-    {
-        this.subelements = new Map();
-        this.event_listeners = null;
-    }
-
-    setAttribute(target,options) {
-
-    }
-
-    getAttribute(name) {
-
-    }
-}
-
-class UIView extends UIElement{
-
-}
-
-class element_event
-{
-    constructor() {
-        this.x = null;
-        this.y = null;
-    }
-}
-
-class element_event_handler
-{
-    constructor() {
-        this.mouse_moved = function (e, x, y) { }
-        this.mouse_down = function (e, x, y) { }(e, x, y);
-        this.mouse_up = function (e, x, y) { }(e, x, y);
-
-        this.touch_began = function (e, x, y) { }(e, x, y);
-        this.touch_moved = function (e, x, y) { }(e, x, y);
-        this.touch_ended = function (e, x, y) { }(e, x, y);
-
-        text_changed = function (e, x, y) { }(e, x, y);
-    }
-}
-
-class UIElementEventListener extends element_event_handler
-{
-    constructor() {
-        this.mouseMoved = function (e, x, y) { }
-    }
-}
-
-class dom_element
-{
-    constructor()
-    {
-        this.eventHandler = new event_handler();
-        this.subelements = Array();
-        alert("this dom element is ready");
-    }
-}
-
-class event_handler
-{
-    constructor()
-    {
-        this.subelements = Array();
-        alert("i'm the handler");
-    }
-
-    event()
-    {
-         alert("i'm the event");
-    }
-}
+import { UIElement } from "./ui/UIElement";
 
 function $(e)
 {
@@ -224,9 +149,29 @@ for (var i = 0; i < document.styleSheets.length; i++)
 //boot阶段两项任务:
 //1,进行重定向
 //2,检测客户端环境
-$('http','https://cws.saosaokan.xin/index.php');
+// $('http','https://cws.saosaokan.xin/index.php');
 //initlize_event_handler();
 
 var el = document.getElementById("a");
 
-el.eventHandler = new event_handler();
+//el.eventHandler = new event_handler();
+
+
+function buttonClicked(event) {
+    document.getElementById("sometext").innerHTML = "button clicked. event:" + JSON.stringify(event);
+    console.log(event);
+}
+
+function buttonMouseMoved(event, x, y) {
+    console.log(event);
+    console.log("x: " + event.x + " y; " + event.y);
+}
+
+window.onload = function () {
+    document.getElementById("buttonA").onclick = buttonClicked;
+    document.getElementById("buttonA").onmousemove = buttonMouseMoved;
+
+    var a = new UIElement();
+
+    console.log(window);
+}
