@@ -10,6 +10,9 @@ export class UIElement extends Element {
         super();
         this.subelements   = new Map();
         this.eventHandlers = null;
+
+        this.style  = null;
+        this.status = null;
     }
 
     setAttribute(target, options) {
