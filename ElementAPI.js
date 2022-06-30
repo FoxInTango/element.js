@@ -1,4 +1,4 @@
-import { Element } from "./core/UIElement";
+import { Element } from "./core/Element";
 import { UIElement } from "./ui/UIElement";
 
 function buttonClicked(event) {
