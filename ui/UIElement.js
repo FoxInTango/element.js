@@ -1,5 +1,6 @@
 import { Element } from "../core/Element";
 
+const ELEMENT_STATUS_NORMAL = '';
 export class UIElement extends Element {
 
     /** interface
@@ -8,11 +9,14 @@ export class UIElement extends Element {
 
     constructor() {
         super();
-        this.subelements   = new Map();
-        this.eventHandlers = null;
+        this.components  = new Map();
+        this.attachments = new Map();
+        this.subelements = new Array();
 
-        this.style  = null;
+        this.style = null;
         this.status = null;
+
+        this.eventHandlers = null;
     }
 
     setAttribute(target, options) {

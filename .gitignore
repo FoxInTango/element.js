@@ -35,4 +35,7 @@
 /lib/*
 /bin/*
 
+.DS_Store
+
 /.vs
+
