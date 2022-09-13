@@ -1,11 +1,12 @@
-export class UIContext {
+import { Context } from '../core/Context';
+export class UIContext extends Context {
     constructor() {
         this.elements = new Array();
         this.elementMap = new Map();
     }
 
-    appendElement(e){
-
+    appendElement(e) {
+        
     }
 
     insertElement(e,index){
@@ -19,6 +20,22 @@ export class UIContext {
     render(){
         
     }
+
+    /** drawing
+     * 
+     */
+    clear() { }
+    clearRect() { }
+    setClip() { }
+    setLineStyle() { }
+    drawLine()  { }
+    drawPath()  { }
+    drawText()  { }
+    drawImage() { }
+
+    fill() { }
+
+    stroke() { }
 
     /** event
      * 

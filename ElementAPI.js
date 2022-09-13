@@ -1,17 +1,58 @@
-import { Element   } from './core/Element' ;
-import { UIElement } from './ui/UIElement' ;
-import { UILayout  } from './ui/UILayout';
+import { Element } from './core/Element';
+import { ElementTreeWalker } from './core/ElementTreeWalker';
+import { UIContext } from './ui/UIContext';
+import { UIElement } from './ui/UIElement';
+import { UIComponent } from './ui/UIComponent';
+import { UILayout } from './ui/UILayout';
+import { UIColor } from './ui/UIColor';
 import { UIStyle   } from './ui/UIStyle';
 import { UIStatus } from './ui/UIStatus';
+
+console.log('Runtime Global : ');
+console.log(global);
+
+var runtimeGlobal = null;
+
+try {
+    //runtimeGlobal = window;
+    window.onload = function () {
+
+        let circle = document.getElementById('circle');
+        console.log(circle.getBoundingClientRect());
+        var e = new ElementAPI();
+        e.boot();
+
+        // Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 103.0.5060.114 Safari / 537.36 Edg / 103.0.1264.49
+    }
+} catch (e) { }
 
 
 const ELEMENT_UI_TAG = 'ElementUI';
 
+console.log('Type of ELEMENT_UI_TAG : ');
+console.log(typeof (ELEMENT_UI_TAG));
+
+//console.log(JSON.stringify(global));
+var parser = new DOMParser();
+let text = "<bookstore>"
+text = text + "<book>";
+text = text + "<title>Harry Potter</title>";
+text = text + "<author>J K. Rowling</author>";
+text = text + "<year>2005</year>";
+text = text + "</book>";
+text = text + "</bookstore>";
+
+let xmlDoc = parser.parseFromString(text, "text/xml");
+
+console.log(xmlDoc);
+
 class DOMEventHandler {
     constructor(s) {
-        this.onclick = s.onclick;
+        this.onclick     = s.onclick;
         this.onmousemove = s.onmousemove;
         this.onmouseup = s.onmouseup;
+
+        this.on_componentEvent = s.on_componentEvent;
     }
 
     listen(id) {
@@ -35,76 +76,139 @@ class DOMEventHandler {
             else {
                 console.log('this.onmouseup undefined.');
             }
-            //console.log(e.prototype);
         } else {
             console.log('no element with id: ' + id);
         }
     }
 }
 
-window.onload = function () {
-    var e = new Element();
-    var a = new UIElement();
-    var handler = new DOMEventHandler(
-        {
-        onclick: function buttonClicked(event) {
-            document.getElementById("sometext").innerHTML = "button clicked. event:" + JSON.stringify(event);
-            //console.log(event);
-        },
-        onmousemove: function buttonMouseMoved(event, x, y) {
-            //console.log(event);
-            //console.log("x: " + event.x + " y; " + event.y);
-        }
-        });
-
-    handler.listen('buttonA');
-    handler.listen('buttonC');
-    //console.log(handler);
-
-    //console.log(window);
-
-    /**
-    var element = document.querySelector(ELEMENT_UI_TAG);
-
-    if (element) {
-        element.childNodes.forEach(function (n, i, e) {
-            if (n.nodeName === '#text') {
-                //console.log(n.nodeValue);
-            } else {
-                console.log('类型: ' + n.nodeName + '    id: ' + n.id + '    width : ' + n.getAttribute("width") + '    anyThing: ' + n.getAttribute("anyThing"));
-            }
-            
-        });
-    }
-     */
-
-    new ElementAPI().boot();
-}
-
 //export * from '';
 //export * as default from '';
 
 export class ElementAPI {
+    constructor() {
+        this.name = 'ElementAPI';
+        this.componentMap = new Map();
+        this.componentMap.set('EL:SOMETHING', "SOMETHING");
+    }
+
+    set components(options) {
+
+    }
+
+    get components() {
+        return ELEMENT_API_COMPONENT_MAP;
+    }
+    /**
+     * 环境注册
+     */
+    appendContext() { }
+    removeContext() { }
     /**
      * 组件注册
      */
-
+    
+    appendComponent(component) { }
+    removeComponent(component) { }
     /**
-     * 
+     *  初始化
      */
     boot() {
-        var frames = document.querySelectorAll(ELEMENT_UI_TAG);
+        var e = new Element();
+        var a = new UIElement();
 
-        if (frames) {
-            frames.forEach(function (n, i, f) {
-                n.childNodes.forEach(function (node, index, frame) {
-                    if (node.nodeName === '#text') {
-                        console.log(n.nodeType);
-                    } else {
-                        console.log('类型: ' + node.nodeType + '    id: ' + node.id + '    width : ' + node.getAttribute("width") + '    anyThing: ' + node.getAttribute("anyThing"));
-                    }
-                });
+        var handler = new DOMEventHandler(
+            {
+                onclick: function buttonClicked(event) {
+                    document.getElementById("sometext").innerHTML = "button clicked. event:" + event.srcElement.id//JSON.stringify(event);
+                    console.log(event);
+                },
+                onmousemove: function buttonMouseMoved(event) {
+                    console.log(event);
+                }
             });
+
+        handler.listen('buttonA');
+        handler.listen('buttonC');
+        var color = new UIColor(100, 200, 100, 255);
+        console.log(color);
+        this.loadUI();
+    }
+
+    handleElement(node, index, parent) {
+        /** 过滤无效节点
+         */
+        if (node.nodeName === '#text' || node.nodeName == '#comment') { return; }
+        //console.log(node.nodeName);
+        /** 处理组件
+         */
+        if (this.componentMap.has(node.nodeName)) {
+            console.log("COMPONENT EXIST : " + this.componentMap.get(node.nodeName));
+            if (parent) {
+                console.log('    with parent : ' + parent.nodeName);
+            }
+        } else {
+            console.log('类型: ' + node.nodeName + '    ' + node.nodeType + '    id: ' + node.id + '    width : ' + node.getAttribute("width") + '    anyThing: ' + node.getAttribute("anyThing"));
+            if (parent) {
+                console.log('    with parent : ' + parent.nodeName);
+            }
+        }
+    }
+
+    loadUI() {
+        var frames = document.querySelectorAll(ELEMENT_UI_TAG);
+        var walker = new ElementTreeWalker(this);
+        if (frames) {
+            for (var i = 0; i < frames.length; i++) {
+                walker.walk(frames[i], null, null);
+            }
         }
     }
 }
+
+ElementAPI.Element   = Element;
+ElementAPI.UIElement = UIElement;
+ElementAPI.UIStyle   = UIStyle;
+
+
+/** 语言特性测试
+ */
+class Base {
+    constructor() {
+        this.name = 'base';
+    }
+
+    echo() {
+        console.log('BASE Class Name is : ' + this.name);
+    }
+};
+
+class Child extends Base {
+    constructor() {
+        super();
+        this.name = 'child';
+    }
+
+    echo() {
+        //console.log('Class Name is : ' + this.name);
+        //console.log('    with super name : ' + super.name);
+
+        super.echo();
+    }
+};
+
+class Other {
+    constructor() {
+        this.name = 'other';
+    }
+
+    echo() {
+        var b = new Base();
+        var c = new Child();
+        //b.echo();
+        c.echo();
+    }
+}
+//b.echo();
+//c.echo();
+//new Other().echo()
