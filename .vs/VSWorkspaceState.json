@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\core"
+    "\\ui"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\ui\\UIView.js",
   "PreviewInSolutionExplorer": false
 }

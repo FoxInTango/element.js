@@ -11,14 +11,21 @@ export class UIElementAttributes {
 
 }
 
+export class UIElementModel {
+    constructor() {
+        this.protype.owners = new Array();
+    }
+}
+
 export class UIElement extends Element {
 
     /** interface
      *
      */
 
-    constructor() {
+    constructor(context) {
         super();
+        this.protype.context = context;
         this.expectedAttributes = new UIElementAttributes();
         this.name = 'ELEMENT'
         this.components  = new Map();
