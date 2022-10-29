@@ -5,9 +5,13 @@ export class Context {
     global() { }
 
     /**
-     * 绘制元素并添加事件响应
+     * dom/svg/canvas/websockets/webrtc/etc
      */
-    drawElement(e) {
-
-    }
+    apiEnabled() { }
+    ws() { }
+    xhr() { }
+    /**
+     * file/image/etc
+     */
+    download(url) { }
 }

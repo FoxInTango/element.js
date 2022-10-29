@@ -1,18 +1,33 @@
 import { UIElement } from "./UIElement";
 
+/**
 {
-    frame: {
+    frame:{
         x, y, w, h
-    }
+    },
+    layout : {
+    },
+    backgroud:{
+    },
+    status :[
+        normal : {}
+    ]
 }
-
+*/
 /**
  * UIView »ù´¡ÊÓÍ¼
+ *   frame
+ *   border
+ *   backgroud
+ *   margin
+ *   layout
+ *   status
+ *   
  */
-class UIView extends UIElement {
+export class UIView extends UIElement {
     constructor(options) {
         super();
-        this.viewRoot = this;
+        this.master = this;
 
     }
 }

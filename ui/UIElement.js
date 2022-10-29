@@ -25,12 +25,10 @@ export class UIElement extends Element {
 
     constructor(context) {
         super();
-        this.protype.context = context;
         this.expectedAttributes = new UIElementAttributes();
-        this.name = 'ELEMENT'
+        this.elementName = 'uielement'
         this.components  = new Map();
         this.attachments = new Map();
-        this.subelements = new Array();
 
         this.statusMap = new Map();
 

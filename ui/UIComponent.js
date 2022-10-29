@@ -1,7 +1,7 @@
-import { UIElement } from './UIElement';
+import { UIView } from './UIView';
 
-export class UIComponent extends UIElement {
+export class UIComponent extends UIView {
     constructor() {
-
+        super();
     }
 }

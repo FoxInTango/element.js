@@ -85,7 +85,7 @@ class DOMEventHandler {
 //export * from '';
 //export * as default from '';
 
-export class ElementAPI {
+export class ElementAPI extends Element {
     constructor() {
         this.name = 'ElementAPI';
         this.componentMap = new Map();
@@ -169,46 +169,3 @@ export class ElementAPI {
 ElementAPI.Element   = Element;
 ElementAPI.UIElement = UIElement;
 ElementAPI.UIStyle   = UIStyle;
-
-
-/** 语言特性测试
- */
-class Base {
-    constructor() {
-        this.name = 'base';
-    }
-
-    echo() {
-        console.log('BASE Class Name is : ' + this.name);
-    }
-};
-
-class Child extends Base {
-    constructor() {
-        super();
-        this.name = 'child';
-    }
-
-    echo() {
-        //console.log('Class Name is : ' + this.name);
-        //console.log('    with super name : ' + super.name);
-
-        super.echo();
-    }
-};
-
-class Other {
-    constructor() {
-        this.name = 'other';
-    }
-
-    echo() {
-        var b = new Base();
-        var c = new Child();
-        //b.echo();
-        c.echo();
-    }
-}
-//b.echo();
-//c.echo();
-//new Other().echo()
