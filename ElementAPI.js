@@ -2,6 +2,7 @@ import { Element } from './core/Element';
 import { ElementTreeWalker } from './core/ElementTreeWalker';
 import { UIContext } from './ui/UIContext';
 import { UIElement } from './ui/UIElement';
+import { UIView } from './ui/UIView';
 import { UIComponent } from './ui/UIComponent';
 import { UILayout } from './ui/UILayout';
 import { UIColor } from './ui/UIColor';
@@ -11,19 +12,17 @@ import { UIStatus } from './ui/UIStatus';
 console.log('Runtime Global : ');
 console.log(global);
 
+if (global.window) {
+    console.log("window");
+} else {
+    console.log("browser window undefined");
+}
+
 var runtimeGlobal = null;
 
 try {
     //runtimeGlobal = window;
-    window.onload = function () {
-
-        let circle = document.getElementById('circle');
-        console.log(circle.getBoundingClientRect());
-        var e = new ElementAPI();
-        e.boot();
-
-        // Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 103.0.5060.114 Safari / 537.36 Edg / 103.0.1264.49
-    }
+    
 } catch (e) { }
 
 
@@ -48,6 +47,7 @@ console.log(xmlDoc);
 
 class DOMEventHandler {
     constructor(s) {
+        
         this.onclick     = s.onclick;
         this.onmousemove = s.onmousemove;
         this.onmouseup = s.onmouseup;
@@ -85,8 +85,13 @@ class DOMEventHandler {
 //export * from '';
 //export * as default from '';
 
+/** windows.URL 
+ * https://blog.csdn.net/weixin_51157081/article/details/124848203
+ */
+
 export class ElementAPI extends Element {
     constructor() {
+        super();
         this.name = 'ElementAPI';
         this.componentMap = new Map();
         this.componentMap.set('EL:SOMETHING', "SOMETHING");
@@ -166,6 +171,11 @@ export class ElementAPI extends Element {
     }
 }
 
-ElementAPI.Element   = Element;
+ElementAPI.Element = Element;
+ElementAPI.UIStyle = UIStyle;
 ElementAPI.UIElement = UIElement;
-ElementAPI.UIStyle   = UIStyle;
+ElementAPI.UIView = UIView;
+ElementAPI.UIComponent = UIComponent;
+
+export * from './index.js';
+export * as default from './index.js';

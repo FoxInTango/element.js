@@ -1,7 +1,5 @@
 import { UIColor } from './UIColor';
-/** ×ÊÁÏ
- * https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors#a_createradialgradient_example
- */
+
 /** Brush
  *      Color
  *      Gradient -- LinearGradient
@@ -26,6 +24,16 @@ import { UIColor } from './UIColor';
 /** Fill
  *  
  *
+ */
+
+/** CURSOR
+ * https://www.runoob.com/jsref/prop-style-cursor.html
+ * https://baike.baidu.com/item/ANI/22711002?fr=aladdin
+ * https://baike.baidu.com/item/CUR/5676479?fr=aladdin
+ */
+
+/**
+ * AUDIO 
  */
 
 export class UIStyle {

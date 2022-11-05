@@ -73,3 +73,6 @@ class NULL {
 var n = new NULL();
 
 if (n == null) { console.log("return null OK"); } else { console.log("return null bad -- " + JSON.stringify(n)); } 
+
+let circle = document.getElementById('circle');
+console.log(circle.getBoundingClientRect());
