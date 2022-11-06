@@ -9,45 +9,10 @@ import { UIColor } from './ui/UIColor';
 import { UIStyle   } from './ui/UIStyle';
 import { UIStatus } from './ui/UIStatus';
 
-console.log('Runtime Global : ');
-console.log(global);
-
-if (global.window) {
-    console.log("window");
-} else {
-    console.log("browser window undefined");
-}
-
-var runtimeGlobal = null;
-
-try {
-    //runtimeGlobal = window;
-    
-} catch (e) { }
-
-
 const ELEMENT_UI_TAG = 'ElementUI';
-
-console.log('Type of ELEMENT_UI_TAG : ');
-console.log(typeof (ELEMENT_UI_TAG));
-
-//console.log(JSON.stringify(global));
-var parser = new DOMParser();
-let text = "<bookstore>"
-text = text + "<book>";
-text = text + "<title>Harry Potter</title>";
-text = text + "<author>J K. Rowling</author>";
-text = text + "<year>2005</year>";
-text = text + "</book>";
-text = text + "</bookstore>";
-
-let xmlDoc = parser.parseFromString(text, "text/xml");
-
-console.log(xmlDoc);
 
 class DOMEventHandler {
     constructor(s) {
-        
         this.onclick     = s.onclick;
         this.onmousemove = s.onmousemove;
         this.onmouseup = s.onmouseup;
@@ -82,9 +47,6 @@ class DOMEventHandler {
     }
 }
 
-//export * from '';
-//export * as default from '';
-
 /** windows.URL 
  * https://blog.csdn.net/weixin_51157081/article/details/124848203
  */
@@ -92,7 +54,7 @@ class DOMEventHandler {
 export class ElementAPI extends Element {
     constructor() {
         super();
-        this.name = 'ElementAPI';
+        this.elementName = 'ElementAPI';
         this.componentMap = new Map();
         this.componentMap.set('EL:SOMETHING', "SOMETHING");
     }
@@ -136,7 +98,6 @@ export class ElementAPI extends Element {
         handler.listen('buttonA');
         handler.listen('buttonC');
         var color = new UIColor(100, 200, 100, 255);
-        console.log(color);
         this.loadUI();
     }
 
@@ -170,12 +131,6 @@ export class ElementAPI extends Element {
         }
     }
 }
-
-ElementAPI.Element = Element;
-ElementAPI.UIStyle = UIStyle;
-ElementAPI.UIElement = UIElement;
-ElementAPI.UIView = UIView;
-ElementAPI.UIComponent = UIComponent;
 
 export * from './index.js';
 export * as default from './index.js';

@@ -26,7 +26,8 @@ export class UIElement extends Element {
     constructor(context) {
         super();
         this.expectedAttributes = new UIElementAttributes();
-        this.elementName = 'uielement'
+        this.elementName = 'UIElement'
+        this.id = null;
         this.components  = new Map();
         this.attachments = new Map();
 

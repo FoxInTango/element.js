@@ -1,0 +1,9 @@
+<!DOCTYPE uiml>
+<uiml>
+  <include></include>
+  <require></require>
+  <import></import>
+  <export></export>
+  <element name="" id="" target="" script="" keywords=""/>
+  <element></element>
+</uiml>

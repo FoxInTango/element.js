@@ -28,6 +28,8 @@ export class UIView extends UIElement {
     constructor(options) {
         super();
         this.master = this;
+        this.elementName = 'UIView';
+        
 
     }
 }

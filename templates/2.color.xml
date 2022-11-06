@@ -1,0 +1,11 @@
+<!DOCTYPE uiml>
+<uiml>
+  <color name="" value="name@namespace"></color>
+  <color name="" value="#rgba"></color>
+  <color name="">
+    <r value=""></r>
+    <g value=""></g>
+    <b value=""></b>
+    <a value=""></a>
+  </color>
+</uiml>

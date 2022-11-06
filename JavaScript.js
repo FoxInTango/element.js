@@ -1,5 +1,35 @@
 /** ”Ô—‘Ãÿ–‘≤‚ ‘
  */
+
+console.log('Runtime Global : ');
+console.log(global);
+
+if (global.window) {
+    console.log("window");
+} else {
+    console.log("browser window undefined");
+}
+
+var runtimeGlobal = null;
+
+try {
+    //runtimeGlobal = window;
+
+} catch (e) { }
+
+//console.log(JSON.stringify(global));
+var parser = new DOMParser();
+let text = "<bookstore>"
+text = text + "<book>";
+text = text + "<title>Harry Potter</title>";
+text = text + "<author>J K. Rowling</author>";
+text = text + "<year>2005</year>";
+text = text + "</book>";
+text = text + "</bookstore>";
+
+let xmlDoc = parser.parseFromString(text, "text/xml");
+
+console.log(xmlDoc);
 class Base {
     constructor() {
         this.name = 'base';

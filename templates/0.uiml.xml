@@ -1,0 +1,35 @@
+<!DOCTYPE uiml>
+<uiml>
+  <!--  -->
+  <!-- 运行时结构
+      ElementAPI - ROOT
+         |
+      -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+         |
+      UIView
+         |
+  -->
+  <!-- UIML 内置标签 -->
+  <include template="file://color.xml"></include>
+  <require></require>
+  <import></import>
+  <export></export>
+  <namespace></namespace>
+  <color></color><colors></colors>
+  <image></image>
+  <sprite></sprite>
+  <images></images>
+  <sprites></sprites>
+  <theme></theme>
+  <frame></frame>
+  <layout></layout>
+  <slot></slot>
+  <view></view>
+  <component></component>
+  <page></page>
+  <segment></segment>
+
+  <!-- UIML 解析规则 -->
+
+  <!-- UI视图 行为 -->
+</uiml>

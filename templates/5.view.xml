@@ -1,0 +1,12 @@
+<!DOCTYPE uiml>
+<uiml>
+  <view name="" id="" target="" script="" keywords="" x="" y="" width="" height="" background-color="" background-image="">
+    <layout></layout>
+    <theme>
+    </theme>
+    <status>
+      
+    </status>
+  </view>
+  <view name="" id="" target="" script="" keywords="" frame="x,y,width,height" background="color,image"></view>
+</uiml>
