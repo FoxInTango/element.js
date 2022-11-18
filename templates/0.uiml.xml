@@ -6,25 +6,25 @@
          |
       -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
          |
-      UIView-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+       UIElement-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* component[Map] background[Map]
          |         |               
-        ...      namespaceMap
+        ...      namespace[Map]
                    |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-                   |                           |
-                 themeMap                    componentMap
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                   |                         |               |               |               |               |               |               |               |
+                 theme[Map]                colorMap        imageMap        spriteMap       gradientMap     backgroundMap   frameMap        layoutMap       borderMap
                    |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-                   |
-                 statusMap
-                   |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-                   |
-                 styleMap
-                   |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-                   |          |          |
-                 colorMap   imageMap   spriteMap
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                   |       |                 |               |               |               |               |               |               |               |
+                  ...    status[Map]       colorMap        imageMap        spriteMap       gradientMap     backgroundMap   frameMap        layoutMap       borderMap
+                           |
+                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                           |                 |               |               |               |               |               |               |               |
+                         style -[Map]      colorMap        imageMap        spriteMap       gradientMap     backgroundMap   frameMap        layoutMap       borderMap
+                           |
+                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                                             |               |               |               |               |               |               |               |
+                                           colorMap        imageMap        spriteMap       gradientMap     backgroundMap   frameMap        layoutMap       borderMap
   -->
   <!-- UIML 内置标签 -->
   <include template="file://color.xml"></include>
@@ -36,6 +36,7 @@
   <image></image>
   <sprite></sprite>
   <images></images>
+  <background></background>
   <sprites></sprites>
   <theme></theme>
   <frame></frame>

@@ -41,4 +41,13 @@ export class Context {
     download(url) { }
 
     console() { return globalThis.console; }
+
+    /**
+     * return: XML DOC
+     */
+    loadXML() { }
+    /**
+     * return: JSON OBJ
+     */
+    loadJSON() { }
 }
