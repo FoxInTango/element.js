@@ -6,8 +6,25 @@
          |
       -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
          |
-      UIView
-         |
+      UIView-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+         |         |               
+        ...      namespaceMap
+                   |
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                   |                           |
+                 themeMap                    componentMap
+                   |
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                   |
+                 statusMap
+                   |
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                   |
+                 styleMap
+                   |
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                   |          |          |
+                 colorMap   imageMap   spriteMap
   -->
   <!-- UIML 内置标签 -->
   <include template="file://color.xml"></include>
@@ -25,9 +42,18 @@
   <layout></layout>
   <slot></slot>
   <view></view>
+  <svg></svg>
+  <canvas></canvas>
   <component></component>
+  <extends></extends>
   <page></page>
   <segment></segment>
+
+  <text>
+    <range></range>
+    <range></range>
+    <range></range>
+  </text>
 
   <!-- UIML 解析规则 -->
 

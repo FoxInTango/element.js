@@ -10,5 +10,7 @@
 
 export class UILayout {
     constructor() {
+        
+        this.frame = null;
     }
 }

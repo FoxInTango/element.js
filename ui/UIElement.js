@@ -13,7 +13,6 @@ export class UIElementAttributes {
 
 export class UIElementModel {
     constructor() {
-        this.protype.owners = new Array();
     }
 }
 
@@ -25,7 +24,6 @@ export class UIElement extends Element {
 
     constructor(context) {
         super();
-        this.expectedAttributes = new UIElementAttributes();
         this.elementName = 'UIElement'
         this.id = null;
         this.components  = new Map();
@@ -33,14 +31,7 @@ export class UIElement extends Element {
 
         this.statusMap = new Map();
 
-        this.style  = null;
-        this.status = null;
-        this.layout = null;
-
         this.eventHandlers = new Array();
-
-        this._boundingBox = null;
-        this._clipRegion = null;
     }
 
     set(options) {

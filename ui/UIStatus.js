@@ -1,10 +1,10 @@
-import { UILayout } from './UILayout';
-import { UIStyle } from './UIStyle';
+import { Element } from '../core/Element';
+import { UITheme } from './UITheme';
 
-export class UIStatus {
+export class UIStatus extends Element {
     constructor(name, layout, style) {
-        this.name = name;
-        this.style = style;
-        this.layout = layout;
+        this.elementName = 'UIStatus';
+
+        this.styleMap = null;
     }
 }

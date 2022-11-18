@@ -1,0 +1,7 @@
+<!DOCTYPE uiml>
+<uiml>
+  <component name="button" script="UIButton.js">
+    <view id="main">Click Me.</view>
+    <theme></theme>
+  </component>
+</uiml>

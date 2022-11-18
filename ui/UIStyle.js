@@ -37,7 +37,8 @@ import { UIColor } from './UIColor';
  */
 
 export class UIStyle {
-    constructor(background_color,border_color,border_line_style) {
-        this.backgroundColor = background_color;
+    constructor() {
+        this.theme = null;
+        this.layout = null;
     }
 }

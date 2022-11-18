@@ -9,52 +9,16 @@ import { UIColor } from './ui/UIColor';
 import { UIStyle   } from './ui/UIStyle';
 import { UIStatus } from './ui/UIStatus';
 
+import { Task } from './core/Task';
+import { worker_progress } from './modules/worker';
+
 const ELEMENT_UI_TAG = 'ElementUI';
-
-class DOMEventHandler {
-    constructor(s) {
-        this.onclick     = s.onclick;
-        this.onmousemove = s.onmousemove;
-        this.onmouseup = s.onmouseup;
-
-        this.on_componentEvent = s.on_componentEvent;
-    }
-
-    listen(id) {
-        var e = document.getElementById(id);
-
-        if (e) {
-            if (this.onclick) {
-                e.addEventListener('click', this.onclick);
-            } else {
-                console.log('this.onclick undefined.');
-            }
-            if (this.onmousemove) {
-                e.addEventListener('mousemove', this.onmousemove);
-            } else {
-                console.log('this.onmousemove undefined.');
-            }
-
-            if (this.onmouseup) {
-                e.addEventListener('mouseup', this.onmouseup);
-            }
-            else {
-                console.log('this.onmouseup undefined.');
-            }
-        } else {
-            console.log('no element with id: ' + id);
-        }
-    }
-}
-
-/** windows.URL 
- * https://blog.csdn.net/weixin_51157081/article/details/124848203
- */
 
 export class ElementAPI extends Element {
     constructor() {
         super();
         this.elementName = 'ElementAPI';
+        this.context = new UIContext();
         this.componentMap = new Map();
         this.componentMap.set('EL:SOMETHING', "SOMETHING");
     }
@@ -80,24 +44,10 @@ export class ElementAPI extends Element {
     /**
      *  初始化
      */
-    boot() {
-        var e = new Element();
-        var a = new UIElement();
-
-        var handler = new DOMEventHandler(
-            {
-                onclick: function buttonClicked(event) {
-                    document.getElementById("sometext").innerHTML = "button clicked. event:" + event.srcElement.id//JSON.stringify(event);
-                    console.log(event);
-                },
-                onmousemove: function buttonMouseMoved(event) {
-                    console.log(event);
-                }
-            });
-
-        handler.listen('buttonA');
-        handler.listen('buttonC');
-        var color = new UIColor(100, 200, 100, 255);
+    boot(option) {
+        this.worker = new Worker(
+            URL.createObjectURL(new Blob([`(${worker_progress.toString()})()`]))
+        );
         this.loadUI();
     }
 
@@ -134,3 +84,5 @@ export class ElementAPI extends Element {
 
 export * from './index.js';
 export * as default from './index.js';
+
+globalThis.elementAPI = new ElementAPI();

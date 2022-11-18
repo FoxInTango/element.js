@@ -106,3 +106,24 @@ if (n == null) { console.log("return null OK"); } else { console.log("return nul
 
 let circle = document.getElementById('circle');
 console.log(circle.getBoundingClientRect());
+
+
+var e = new Element();
+var a = new UIElement();
+
+var handler = new DOMEventHandler(
+    {
+        onclick: function buttonClicked(event) {
+            document.getElementById("sometext").innerHTML = "button clicked. event:" + event.srcElement.id//JSON.stringify(event);
+            console.log(event);
+        },
+        onmousemove: function buttonMouseMoved(event) {
+            console.log(event);
+        }
+    });
+
+handler.listen('buttonA');
+handler.listen('buttonC');
+var color = new UIColor(100, 200, 100, 255);
+
+// `` ES6 ·´ÒýºÅ

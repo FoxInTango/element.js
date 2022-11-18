@@ -7,6 +7,7 @@ export class Element {
     constructor() {
         this.master = this;
         this.elementName = 'element';
+        this.subelements = new Array();
 
         /** Asset Map
          *  UIColor
@@ -31,6 +32,7 @@ export class Element {
         this.layoutMap = null;//new Map();
         this.statusMap = null;//new Map();
         this.themeMap = null;//new Map();
-        this.subelements = new Array();
+
+        this.namespaceMap = null;
     }
 }

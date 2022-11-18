@@ -14,6 +14,7 @@ import { UIElement } from "./UIElement";
     ]
 }
 */
+
 /**
  * UIView »ù´¡ÊÓÍ¼
  *   frame
@@ -27,7 +28,7 @@ import { UIElement } from "./UIElement";
 export class UIView extends UIElement {
     constructor(options) {
         super();
-        this.master = this;
+        this.master = null;
         this.elementName = 'UIView';
         
 
