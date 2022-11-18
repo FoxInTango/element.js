@@ -7,6 +7,5 @@
 
 export class DOMStyle {
     constructor() { }
-
     string() { }
 }

@@ -35,4 +35,11 @@ export class Element {
 
         this.namespaceMap = null;
     }
+    /**
+     * option : attribute name or attribute object 
+     *          attribute - "name@[namespace]"
+     */
+    setAttribute(option) {
+
+    }
 }
