@@ -4,31 +4,31 @@
   <!-- 运行时结构
       ElementAPI - ROOT
          |
-      -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
-         |
-       UIElement-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* component[Map]
+      -*-*-*-*-*-*-*-*-
+         |         |
+       UITree    AssetHost
          |         |               
-        ...      namespace[Map]
+        ...      namespaceMap
                    |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                   |                         |               |               |               |               |               |               |               |
-                 theme[Map]                backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
-                   |
-                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                   |       |                 |               |               |               |               |               |               |               |
-                  ...    status[Map]       backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+                   |                         |               |               |               |               |               |               |               |               |               |               |
+                 themeMap                  statusMap       styleMap        backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap       componentMap
+                   |                                                                                                                                                                                         |
+                  -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*      -*-*-*-*-*-*-*-*-*-*-*-*
+                   |       |                 |               |               |               |               |               |               |               |               |               |               |               |
+                  ...    statusMap         styleMap                        backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap       UITree          AssetHost
                            |
-                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                           |                 |               |               |               |               |               |               |               |
-                         style -[Map]      backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
+                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                           |                 |               |               |               |               |               |               |               |               |               |
+                         styleMap                                          backgroundMap   colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
                            |
-                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                           |                                 |               |               |               |               |               |               |
-                         backgroundMap                     colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
+                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                           |                                 |               |               |               |               |               |               |               |               |
+                         backgroundMap                                                     colorMap        imageMap        spriteMap       gradientMap     frameMap        layoutMap       borderMap
                            |
-                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-                                                             |               |               |               |
-                                                           colorMap        imageMap        spriteMap       gradientMap
+                          -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+                                                             |               |               |               |               |               |
+                                                                                           colorMap        imageMap        spriteMap       gradientMap
   -->
   <!-- UIML 内置标签 -->
   <include template="file://color.xml"></include>
@@ -61,6 +61,10 @@
   </text>
 
   <!-- UIML 解析规则 -->
+  
+  <!-- 元素,视图与资源 -->
 
-  <!-- UI视图 行为 -->
+  <!-- 视图 行为与事件 -->
+
+  <!-- 主题,外观与样式 -->
 </uiml>

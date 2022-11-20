@@ -21,6 +21,32 @@ export class ElementAPI extends Element {
         this.context = new UIContext();
         this.componentMap = new Map();
         this.componentMap.set('EL:SOMETHING', "SOMETHING");
+
+        /** Asset Map
+         *  UIColor
+         *  UIGradient
+         *  UIImage
+         *  UIImageSlice
+         *  UIStyle
+         *  UILayout
+         *  UIStatus
+         *  UITheme
+         *  
+         *  UIComponents
+         *  
+         *  按需分配
+         */
+        this.assetMap = null;// new Map();
+        this.colorMap = null;//new Map();
+        this.imageMap = null;//new Map();
+        this.gradientMap = null;//new Map();
+        this.imageSliceMap = null;//new Map();
+        this.styleMap = null;//new Map();
+        this.layoutMap = null;//new Map();
+        this.statusMap = null;//new Map();
+        this.themeMap = null;//new Map();
+
+        this.namespaceMap = null;
     }
 
     set components(options) {
