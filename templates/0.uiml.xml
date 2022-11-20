@@ -4,7 +4,7 @@
   <!-- 运行时结构
       ElementAPI - ROOT
          |
-      -*-*-*-*-*-*-*-*-
+      -*-*-*-*-*-*-*-*- stringMap[local] dataMap 
          |         |
        UITree    AssetHost
          |         |               
@@ -54,6 +54,15 @@
   <page></page>
   <segment></segment>
 
+  <string>
+    <zh></zh>
+    <en></en>
+  </string>
+
+  <data>
+    
+  </data>
+  
   <text>
     <range></range>
     <range></range>

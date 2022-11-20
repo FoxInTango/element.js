@@ -26,12 +26,10 @@ export class UIElement extends Element {
         super();
         this.elementName = 'UIElement'
         this.id = null;
-        this.components  = new Map();
-        this.attachments = new Map();
-
-        this.statusMap = new Map();
-
         this.eventHandlers = new Array();
+
+        this.theme = '';
+        this.status = '';
     }
 
     set(options) {

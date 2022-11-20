@@ -19,8 +19,6 @@ export class ElementAPI extends Element {
         super();
         this.elementName = 'ElementAPI';
         this.context = new UIContext();
-        this.componentMap = new Map();
-        this.componentMap.set('EL:SOMETHING', "SOMETHING");
 
         /** Asset Map
          *  UIColor
@@ -36,17 +34,19 @@ export class ElementAPI extends Element {
          *  
          *  按需分配
          */
-        this.assetMap = null;// new Map();
-        this.colorMap = null;//new Map();
-        this.imageMap = null;//new Map();
-        this.gradientMap = null;//new Map();
-        this.imageSliceMap = null;//new Map();
-        this.styleMap = null;//new Map();
-        this.layoutMap = null;//new Map();
-        this.statusMap = null;//new Map();
-        this.themeMap = null;//new Map();
+        this.namespaceMap = new Map();
+        this.themeMap = new Map();
+        
+        this.colorMap = new Map();
+        this.gradientMap = new Map();
+        this.imageMap = new Map();
+        this.spriteMap = new Map();
 
-        this.namespaceMap = null;
+        this.statusMap = new Map();
+        this.styleMap = new Map();
+        this.layoutMap = new Map();
+        
+        this.componentMap = new Map();
     }
 
     set components(options) {
@@ -111,4 +111,4 @@ export class ElementAPI extends Element {
 export * from './index.js';
 export * as default from './index.js';
 
-globalThis.elementAPI = new ElementAPI();
+globalThis.ElementJS = new ElementAPI();
