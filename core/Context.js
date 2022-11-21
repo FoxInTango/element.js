@@ -13,6 +13,7 @@ export class Context {
 
     appendElement() { }
     removeElement() { }
+    updateElement() { }
 
     /**
      * dom/svg/canvas/websockets/webrtc/etc
