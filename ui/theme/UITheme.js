@@ -1,6 +1,4 @@
-import { Element } from '../core/Element';
-
-export class UITheme extends Element {
+export class UITheme {
     constructor() {
         super();
 

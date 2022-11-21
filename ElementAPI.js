@@ -1,15 +1,7 @@
 import { Element } from './core/Element';
 import { ElementTreeWalker } from './core/ElementTreeWalker';
-import { UIContext } from './ui/UIContext';
-import { UIElement } from './ui/UIElement';
-import { UIView } from './ui/UIView';
-import { UIComponent } from './ui/UIComponent';
-import { UILayout } from './ui/UILayout';
-import { UIColor } from './ui/UIColor';
-import { UIStyle   } from './ui/UIStyle';
-import { UIStatus } from './ui/UIStatus';
+import { UIContext } from './ui/ui';
 
-import { Task } from './core/Task';
 import { worker_progress } from './modules/worker';
 
 const ELEMENT_UI_TAG = 'ElementUI';
@@ -108,7 +100,8 @@ export class ElementAPI extends Element {
     }
 }
 
+globalThis.ElementJS = new ElementAPI();
+
 export * from './index.js';
 export * as default from './index.js';
 
-globalThis.ElementJS = new ElementAPI();

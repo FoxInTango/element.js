@@ -1,4 +1,4 @@
-import { Element } from "../core/Element";
+import { Element } from "../../core/Element";
 
 const ELEMENT_STATUS_NORMAL = '';
 

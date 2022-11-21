@@ -1,6 +1,7 @@
 class UIBackgroundLayerAttribute {
     constructor() {
         this.blendMode = null;
+        this.layerContext = null;
     }
 }
 class UIBackgroundLayer {

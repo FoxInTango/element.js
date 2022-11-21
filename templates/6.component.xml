@@ -1,5 +1,13 @@
 <!DOCTYPE uiml>
 <uiml>
+  <!-- Component 结构
+  
+    Component
+      |
+   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+      |               |               |
+     ...            stringMap       dataMap
+  -->
   <component extends="" namespace="" name="" id="" target="" script="" keywords="" x="" y="" width="" height="" background-color="" background-image="">
   </component>
 </uiml>

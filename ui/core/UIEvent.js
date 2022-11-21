@@ -1,4 +1,4 @@
-import { Event } from '../core/Event';
+import { Event } from '../../core/Event';
 
 export class UIEvent extends Event {
     constructor() { super(); }

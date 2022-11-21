@@ -4,7 +4,7 @@
   <!-- 运行时结构
       ElementAPI - ROOT
          |
-      -*-*-*-*-*-*-*-*- stringMap[local] dataMap 
+      -*-*-*-*-*-*-*-*- stringMap[local] dataMap fontMap
          |         |
        UITree    AssetHost
          |         |               

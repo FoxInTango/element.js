@@ -1,4 +1,4 @@
-import { Context } from '../core/Context';
+import { Context } from '../../core/Context';
 
 var line = {
     name: "line",

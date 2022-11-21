@@ -1,4 +1,4 @@
-import { UIContext } from '../../ui/UIContext';
+import { UIContext } from '../../ui/core/UIContext';
 
 export class DOMContext extends UIContext {
     constructor() {
