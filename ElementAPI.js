@@ -1,8 +1,10 @@
 import { Element } from './core/Element';
 import { ElementTreeWalker } from './core/ElementTreeWalker';
 import { UIContext } from './ui/ui';
+import { UITheme } from './ui/ui';
 
 import { worker_progress } from './modules/worker';
+import { Namespace } from './core/Namespace';
 
 const ELEMENT_UI_TAG = 'ElementUI';
 
@@ -27,6 +29,17 @@ export class ElementAPI extends Element {
          *  按需分配
          */
         this.namespaceMap = new Map();
+        this.namespaceMap.set('default', new Namespace());
+        //this.namespaceMap['default'] = new Namespace();
+        console.log('ElementJS default namespace.');
+        console.log(this.namespaceMap.get('default'));
+
+        this.namespaceMap.forEach((val, key) => {
+            console.log('namespace ' + key);
+            console.log(val);
+        });
+
+        /**
         this.themeMap = new Map();
         
         this.colorMap = new Map();
@@ -39,15 +52,23 @@ export class ElementAPI extends Element {
         this.layoutMap = new Map();
         
         this.componentMap = new Map();
+        */
     }
-
-    set components(options) {
-
+    /**
+     * option:{name:'',namespace:namespaceObj}
+     */
+    setNamespace(option) {
+        if (option.namespace) {
+            
+        }
     }
+    getNamespace(name) { return this.namespaceMap.get(name); }
 
-    get components() {
-        return ELEMENT_API_COMPONENT_MAP;
-    }
+    /**
+     * option:{namespace:'',name:'',theme:themObj}
+     */
+    setTheme(option) { }
+    getTheme(name) { }
     /**
      * 环境注册
      */

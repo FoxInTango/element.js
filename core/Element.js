@@ -1,3 +1,12 @@
+export class ElementAttributes {
+    constructor() {
+        this.master = this;
+        this.id = null;
+        this.namespace = 'element'
+        this.elementName = 'element';
+        this.subelements = new Array();
+    }
+}
 export class Element {
 
 /** interface
@@ -5,11 +14,7 @@ export class Element {
  */
 
     constructor() {
-        this.master = this;
-        this.id = null;
-        this.namespace = 'element'
-        this.elementName = 'element';
-        this.subelements = new Array();
+        this.attributes = new ElementAttributes();
     }
     /**
      * option : attribute name or attribute object 
