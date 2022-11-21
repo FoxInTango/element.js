@@ -2,6 +2,7 @@ import { Element } from './core/Element';
 import { ElementTreeWalker } from './core/ElementTreeWalker';
 import { UIContext } from './ui/ui';
 import { UITheme } from './ui/ui';
+import { UIElement } from './ui/ui';
 
 import { worker_progress } from './modules/worker';
 import { Namespace } from './core/Namespace';
@@ -122,6 +123,11 @@ export class ElementAPI extends Element {
 }
 
 globalThis.ElementJS = new ElementAPI();
+
+let ue = new UIElement();
+
+console.log('UIElement Struct : ');
+console.log(ue);
 
 export * from './index.js';
 export * as default from './index.js';
