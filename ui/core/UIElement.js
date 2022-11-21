@@ -9,7 +9,7 @@ export class UIElementAttributes extends ElementAttributes {
 export class UIElement extends Element {
     constructor() {
         super('super');
-        if (arguments.length != 0 && arguments[0] === 'super') { console.log('Element.js::super call.'); return; }
+        if (arguments.length != 0 && arguments[0] === 'super') { console.log('UIElement.js::super call.'); return; }
         else this.attributes = new UIElementAttributes();
     }
 }

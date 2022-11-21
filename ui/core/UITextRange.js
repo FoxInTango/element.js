@@ -8,7 +8,7 @@ export class UITextRangeAttributes extends UIElementAttributes {
 export class UITextRange extends UIElement {
     constructor() {
         super('super');
-        if (arguments.length != 0 && arguments[0] === 'super') { console.log('Element.js::super call.'); return; }
+        if (arguments.length != 0 && arguments[0] === 'super') { console.log('UITextRange.js::super call.'); return; }
         else this.attributes = new UITextRangeAttributes();
     }
 }
