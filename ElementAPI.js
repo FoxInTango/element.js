@@ -29,6 +29,7 @@ export class ElementAPI extends Element {
          *  
          *  按需分配
          */
+        
         this.namespaceMap = new Map();
         this.namespaceMap.set('default', new Namespace());
         //this.namespaceMap['default'] = new Namespace();
@@ -125,9 +126,6 @@ export class ElementAPI extends Element {
 globalThis.ElementJS = new ElementAPI();
 
 let ue = new UIElement();
-
-console.log('UIElement Struct : ');
-console.log(ue);
 
 export * from './index.js';
 export * as default from './index.js';

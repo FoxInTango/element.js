@@ -13,7 +13,8 @@ export class Element {
  */
 
     constructor() {
-        this.attributes = new ElementAttributes();
+        if (arguments.length != 0 && arguments[0] === 'super') { console.log('Element.js::super call.'); return; }
+        else this.attributes = new ElementAttributes();
     }
     /**
      * option : attribute name or attribute object 
