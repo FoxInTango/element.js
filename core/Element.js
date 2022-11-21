@@ -6,6 +6,8 @@ export class Element {
 
     constructor() {
         this.master = this;
+        this.id = null;
+        this.namespace = 'element'
         this.elementName = 'element';
         this.subelements = new Array();
     }

@@ -50,4 +50,9 @@ export class Context {
      * return: JSON OBJ
      */
     loadJSON() { }
+
+    /**
+     * timeout,callback
+     */
+    loadImage() { }
 }

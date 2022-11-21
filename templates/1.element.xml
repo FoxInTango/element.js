@@ -1,5 +1,13 @@
 <!DOCTYPE uiml>
 <uiml>
+  <!-- Element 结构
+  
+    Element
+      |
+   -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+      |               |               |
+     ...            stringMap       dataMap
+  -->
   <include></include>
   <require></require>
   <import></import>

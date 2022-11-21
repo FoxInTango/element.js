@@ -25,7 +25,9 @@ export class UIElement extends Element {
     constructor(context) {
         super();
         this.elementName = 'UIElement'
-        this.id = null;
+
+        this.zIndex = 0;
+        
         this.eventHandlers = new Array();
 
         this.theme = '';

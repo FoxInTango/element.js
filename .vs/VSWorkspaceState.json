@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\core",
+    "\\ui"
   ],
-  "SelectedNode": "\\JavaScript.js",
+  "SelectedNode": "\\ui\\UIElement.js",
   "PreviewInSolutionExplorer": false
 }
