@@ -1,4 +1,4 @@
-/** ÓïÑÔÌØĞÔ²âÊÔ
+ï»¿/** è¯­è¨€ç‰¹æ€§æµ‹è¯•
  */
 
 console.log('Runtime Global : ');
@@ -71,7 +71,7 @@ class Other {
 //new Other().echo()
 
 /**
- * º¯Êı²ÎÊıÊıÄ¿ - arguments 
+ * å‡½æ•°å‚æ•°æ•°ç›® - arguments 
  */
 
 function argument_number(a, b, c) {
@@ -126,9 +126,9 @@ handler.listen('buttonA');
 handler.listen('buttonC');
 var color = new UIColor(100, 200, 100, 255);
 
-// `` ES6 ·´ÒıºÅ
+// `` ES6 åå¼•å·
 
-// CSS ºĞ×ÓÄ£ĞÍ https://www.cnblogs.com/Renyi-Fan/p/12260327.html
+// CSS ç›’å­æ¨¡å‹ https://www.cnblogs.com/Renyi-Fan/p/12260327.html
 
 // JavaScript BASE64
 
@@ -139,3 +139,46 @@ if (frames) {
         walker.walk(frames[i], null, null);
     }
 }
+
+//<div id='flowDIV'>ğ„&#119187\uED61</div>
+
+if (typeof (window) == 'undefined') { console.log("window undefined."); } else {
+    window.onload = function () {
+        ElementJS.boot();
+        notationAPI.boot();
+        console.log(ElementJS);
+        //window.task();
+        console.log(window);
+        //ElementJS.loadModules('');
+        load_modules('./');
+
+        let e = new ElementJS.Element();
+        console.log('new ElementJS.Element()');
+        console.log(e);
+
+        let u = new ElementJS.UIElement();
+        console.log('new ElementJS.UIElement()');
+        console.log(u);
+        let uc = new ElementJS.UIComponent();
+        console.log('new ElementJS.UIComponent()');
+        console.log(uc);
+
+    }
+}
+
+if (typeof (window) == 'undefined') { console.log("window undefined."); } else { }
+//var global = global || window;//https://github.com/bevacqua/dragula/issues/602
+globalThis.anyThing = new Map();
+globalThis.anyThing.set("key", "value");
+//console.log(globalThis);
+
+let e = new ElementJS.Element();
+console.log('new ElementJS.Element()');
+console.log(e);
+
+let u = new ElementJS.UIElement();
+console.log('new ElementJS.UIElement()');
+console.log(u);
+let uc = new ElementJS.UIComponent();
+console.log('new ElementJS.UIComponent()');
+console.log(uc);

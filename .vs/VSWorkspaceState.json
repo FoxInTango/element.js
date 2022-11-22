@@ -3,10 +3,8 @@
     "",
     "\\core",
     "\\templates",
-    "\\ui",
-    "\\ui\\core",
-    "\\ui\\theme"
+    "\\ui"
   ],
-  "SelectedNode": "\\ui\\core\\UIElement.js",
+  "SelectedNode": "\\JavaScript.js",
   "PreviewInSolutionExplorer": false
 }

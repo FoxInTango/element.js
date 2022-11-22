@@ -1,8 +1,11 @@
 import { Element } from './core/Element';
 import { ElementTreeWalker } from './core/ElementTreeWalker';
+
 import { UIContext } from './ui/ui';
-import { UITheme } from './ui/ui';
 import { UIElement } from './ui/ui';
+import { UIComponent } from './ui/ui';
+
+import { UITheme } from './ui/ui';
 
 import { worker_progress } from './modules/worker';
 import { Namespace } from './core/Namespace';
@@ -86,7 +89,6 @@ export class ElementAPI extends Element {
      *  初始化
      */
     boot(option) {
-        
         this.loadUI();
     }
 
@@ -115,6 +117,7 @@ export class ElementAPI extends Element {
             URL.createObjectURL(new Blob([`(${worker_progress.toString()})()`]))
         );
     }
+
     loadUI() {
         
     }
@@ -122,12 +125,13 @@ export class ElementAPI extends Element {
     loadModules(path) { }
 }
 
-ElementAPI.Element     = Element;
-ElementAPI.UIElement   = UIElement;
+ElementAPI.Element = Element;
+ElementAPI.UIElement = UIElement;
 ElementAPI.UIComponent = UIComponent;
-ElementAPI.UIContext   = UIContext;
-
-globalThis.ElementJS = new ElementAPI();
+ElementAPI.UIContext = UIContext;
 
 export * from './index.js';
 export * as default from './index.js';
+
+globalThis.ElementJS = new ElementAPI();
+
