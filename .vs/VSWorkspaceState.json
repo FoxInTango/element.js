@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\core",
-    "\\templates",
-    "\\ui"
+    "\\views"
   ],
-  "SelectedNode": "\\JavaScript.js",
+  "SelectedNode": "\\views\\UIMenu.xml",
   "PreviewInSolutionExplorer": false
 }

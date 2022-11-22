@@ -89,6 +89,7 @@ export class ElementAPI extends Element {
      *  初始化
      */
     boot(option) {
+        this.bootWorker();
         this.loadUI();
     }
 
