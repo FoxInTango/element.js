@@ -1,9 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\core",
+    "\\templates",
+    "\\ui",
     "\\ui\\core",
     "\\ui\\theme"
   ],
-  "SelectedNode": "\\core",
+  "SelectedNode": "\\ui\\core\\UIElement.js",
   "PreviewInSolutionExplorer": false
 }
