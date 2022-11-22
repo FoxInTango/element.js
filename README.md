@@ -1,3 +1,1 @@
 # element.js
-
-WebAPP Framework.
