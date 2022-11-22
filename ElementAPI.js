@@ -6,14 +6,14 @@ import { UIElement } from './ui/ui';
 
 import { worker_progress } from './modules/worker';
 import { Namespace } from './core/Namespace';
-
-const ELEMENT_UI_TAG = 'ElementUI';
+import { Module } from './core/Module';
 
 export class ElementAPI extends Element {
     constructor() {
         super();
         this.elementName = 'ElementAPI';
         this.context = new UIContext();
+        this.moduleMap = new Map();
 
         /** Asset Map
          *  UIColor
@@ -86,9 +86,7 @@ export class ElementAPI extends Element {
      *  初始化
      */
     boot(option) {
-        this.worker = new Worker(
-            URL.createObjectURL(new Blob([`(${worker_progress.toString()})()`]))
-        );
+        
         this.loadUI();
     }
 
@@ -112,21 +110,24 @@ export class ElementAPI extends Element {
         }
     }
 
-    loadUI() {
-        var frames = document.querySelectorAll(ELEMENT_UI_TAG);
-        var walker = new ElementTreeWalker(this);
-        if (frames) {
-            for (var i = 0; i < frames.length; i++) {
-                walker.walk(frames[i], null, null);
-            }
-        }
+    bootWorker() {
+        this.worker = new Worker(
+            URL.createObjectURL(new Blob([`(${worker_progress.toString()})()`]))
+        );
     }
+    loadUI() {
+        
+    }
+
+    loadModules(path) { }
 }
+
+ElementAPI.Element     = Element;
+ElementAPI.UIElement   = UIElement;
+ElementAPI.UIComponent = UIComponent;
+ElementAPI.UIContext   = UIContext;
 
 globalThis.ElementJS = new ElementAPI();
 
-let ue = new UIElement();
-
 export * from './index.js';
 export * as default from './index.js';
-

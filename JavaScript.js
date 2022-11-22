@@ -131,3 +131,11 @@ var color = new UIColor(100, 200, 100, 255);
 // CSS ºÐ×ÓÄ£ÐÍ https://www.cnblogs.com/Renyi-Fan/p/12260327.html
 
 // JavaScript BASE64
+
+var frames = document.querySelectorAll(ELEMENT_UI_TAG);
+var walker = new ElementTreeWalker(this);
+if (frames) {
+    for (var i = 0; i < frames.length; i++) {
+        walker.walk(frames[i], null, null);
+    }
+}
