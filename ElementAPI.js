@@ -87,10 +87,16 @@ export class ElementAPI extends Element {
     removeComponent(component) { }
     /**
      *  初始化
+     *  option :{
+     *      platform:web|node|...
+     *      index:index.xml
+     *  }
      */
     boot(option) {
-        this.bootWorker();
-        this.loadUI();
+        if (option.platform == 'web') {
+            this.bootWorker();
+            this.loadUI();
+        }
     }
 
     handleElement(node, index, parent) {

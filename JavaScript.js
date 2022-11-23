@@ -182,3 +182,5 @@ console.log(u);
 let uc = new ElementJS.UIComponent();
 console.log('new ElementJS.UIComponent()');
 console.log(uc);
+
+// 平台判断 http://t.zoukankan.com/develon-p-13607146.html
