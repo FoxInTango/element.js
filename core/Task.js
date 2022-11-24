@@ -14,7 +14,7 @@ export class Task {
      * https://developer.mozilla.org/en-US/docs/Web/API/Background_Tasks_API
      * https://developer.mozilla.org/en-US/docs/Web/API/Background_Fetch_API
      */
-    constructor() {
-        this.id = 'defaultTask';
+    constructor(progress, callback) {
+        
     }
 }
