@@ -6,7 +6,6 @@ export class Context {
     global() { return globalThis; }
 
     boot(option) {
-        
     }
 
     elementWithID(id) { return null; }

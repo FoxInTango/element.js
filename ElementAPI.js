@@ -90,8 +90,9 @@ export class ElementAPI extends Element {
      *  }
      */
     boot(option) {
+        this.context.boot(option);
         if (option.platform == 'web') {
-            this.context.boot(option);
+            
             this.bootWorker();
             this.loadUI();
         }

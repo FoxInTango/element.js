@@ -1,7 +1,7 @@
 class Platform {
     constructor() {
         ElementJS.context.platform = this;
-        document.createElement();
+        //document.createElement();
     }
 
     echo() {
