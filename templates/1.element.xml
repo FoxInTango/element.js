@@ -12,6 +12,6 @@
   <require></require>
   <import></import>
   <export></export>
-  <element name="" id="" target="" script="" keywords=""/>
+  <element name="" id="" target="" script="" keywords="" ssr="true/false"/>
   <element></element>
 </uiml>
