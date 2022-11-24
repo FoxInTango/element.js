@@ -1,3 +1,4 @@
+import { Module } from './module/Module';
 import { Element } from './core/Element';
 
 import { UIContext } from './ui/ui';
@@ -133,6 +134,14 @@ export class ElementAPI extends Element {
         if (this.context) {
             this.context.appendElement(option);
         }
+    }
+
+    loadModule(option) {
+        new Module({ option: option, handler: this }); 
+    }
+
+    handleModule(module) {
+        console.log("module/Module.js : " + module.modulePath + 'Loaded.');
     }
 }
 
