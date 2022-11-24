@@ -136,12 +136,12 @@ export class ElementAPI extends Element {
         }
     }
 
-    loadModule(option) {
-        new Module({ option: option, handler: this }); 
+    loadModule(path) {
+        //new Module({ modulePath: path, moduleHandler: this }); 
     }
 
     handleModule(module) {
-        console.log("module/Module.js : " + module.modulePath + 'Loaded.');
+        console.log("module/Module.js : " + module.modulePath + '  Loaded.');
     }
 }
 
