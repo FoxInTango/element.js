@@ -1,15 +1,11 @@
 import { Element } from './core/Element';
-import { ElementTreeWalker } from './core/ElementTreeWalker';
 
 import { UIContext } from './ui/ui';
 import { UIElement } from './ui/ui';
 import { UIComponent } from './ui/ui';
 
-import { UITheme } from './ui/ui';
-
 import { worker_progress } from './modules/worker';
 import { Namespace } from './core/Namespace';
-import { Module } from './core/Module';
 
 export class ElementAPI extends Element {
     constructor() {
@@ -94,6 +90,7 @@ export class ElementAPI extends Element {
      */
     boot(option) {
         if (option.platform == 'web') {
+            this.context.boot(option);
             this.bootWorker();
             this.loadUI();
         }
@@ -129,7 +126,14 @@ export class ElementAPI extends Element {
         
     }
 
-    loadModules(path) { }
+    /**
+     * WebView | Node
+     */
+    loadScript(option) {
+        if (this.context) {
+            this.context.appendElement(option);
+        }
+    }
 }
 
 ElementAPI.Element = Element;

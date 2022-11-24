@@ -1,13 +1,13 @@
-import { CanvasContext } from '../contexts/canvas/CanvasContext';
-import { DOMContext } from '../contexts/dom/DOMContext';
-import { DOMEventHandler } from '../contexts/dom/DOMEventHandler';
-
 export class Context {
     constructor() {
         this.target = null;
     }
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis
     global() { return globalThis; }
+
+    boot(option) {
+        
+    }
 
     elementWithID(id) { return null; }
 

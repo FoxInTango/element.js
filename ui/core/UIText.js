@@ -1,5 +1,8 @@
 import { UIElement, UIElementAttributes } from './UIElement';
 
+export class UITextFormat {
+    constructor() { }
+}
 /**
  * 
  */

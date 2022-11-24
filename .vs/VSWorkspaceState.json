@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\core",
     "\\views"
   ],
-  "SelectedNode": "\\views\\UIMenu.xml",
+  "SelectedNode": "\\views\\view.xml",
   "PreviewInSolutionExplorer": false
 }
