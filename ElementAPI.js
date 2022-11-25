@@ -87,6 +87,7 @@ export class ElementAPI extends Element {
      *  option :{
      *      platform:web|node|...
      *      index:index.xml
+     *      modules:['','','']
      *  }
      */
     boot(option) {
@@ -137,7 +138,7 @@ export class ElementAPI extends Element {
         }
     }
 
-    loadModule(path) {
+    loadModule(path,onload) {
         //new Module({ modulePath: path, moduleHandler: this }); 
     }
 
