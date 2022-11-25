@@ -1,11 +1,10 @@
-import { Module } from './module/Module';
+import { Platform } from './platform/Platform';
 import { Element } from './core/Element';
 
 import { UIContext } from './ui/ui';
 import { UIElement } from './ui/ui';
 import { UIComponent } from './ui/ui';
 
-import { worker_progress } from './modules/worker';
 import { Namespace } from './core/Namespace';
 
 export class ElementAPI extends Element {
@@ -85,16 +84,16 @@ export class ElementAPI extends Element {
     /**
      *  初始化
      *  option :{
-     *      platform:web|node|...
+     *      platform:{ host : web|node|...,api:vm | ...}
      *      index:index.xml
      *      modules:['','','']
      *  }
      */
     boot(option) {
+        this.context.platform = null;
+        this.bootOption = option;
         this.context.boot(option);
         if (option.platform == 'web') {
-            
-            this.bootWorker();
             this.loadUI();
         }
     }
@@ -119,11 +118,6 @@ export class ElementAPI extends Element {
         }
     }
 
-    bootWorker() {
-        this.worker = new Worker(
-            URL.createObjectURL(new Blob([`(${worker_progress.toString()})()`]))
-        );
-    }
 
     loadUI() {
         
