@@ -3,6 +3,8 @@ import { Element,ElementAttributes} from '../../core/Element';
 export class UIElementAttributes extends ElementAttributes {
     constructor() {
         super(0);
+        this.hidden = false;
+        this.visiable = true;
         this.zIndex = 0;
     }
 }

@@ -40,7 +40,6 @@ export class Platform {
     }
 
     loadModule(option) {
-
         if (!option.modulePath) return false;
 
         if (this.host == ELEMENT_HOST_WEB) {
@@ -59,14 +58,61 @@ export class Platform {
         }
     }
 
+    loadImage(option) { }
+    loadAudio(option) { }
+
+    /**
+     * load asset file
+     */
+    loadFile(option) {
+        /**
+         * method : XHR | Fetch API
+         */
+
+        switch (option.method) {
+            case 'xhr': {
+                this.sendXHR(option);
+            } break;
+            case 'fetch': {
+                this.fetch(option);
+            } break;
+            // default:xhr
+            default: {
+                this.sendXHR(option);
+            }
+        }
+    }
+
     loadXML(option) {
         var parser = new DOMParser();
         return parser.parseFromString(text, "text/xml");
     }
 
+    loadJSON() { }
+
     echo() {
         console.log("---------------- Platform ----------------");
     }
+
+    /** https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+     */
+    sendXHR(option) {
+        if (this.host == ELEMENT_HOST_WEB) {
+            const xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                if (xhr.status == 200 && xhr.responseXML != null) {
+                    if (option.handler) { option.handler.handleFile({ type: 'xml', content: xhr.responseXML, path: option.path }); }
+                } else {
+                }
+            }
+            xhr.open("GET", option.path);
+            xhr.send();
+        } else if (this.host == ELEMENT_HOST_NODE) {
+            
+        }
+    }
+
+    fetch(option) { }
 
     loopupRenderTarget() { }
     createRenderTarget() { }

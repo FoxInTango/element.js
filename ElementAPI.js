@@ -120,20 +120,29 @@ export class ElementAPI extends Element {
     }
 
     /**
-     * WebView | Node
+     * option : { path:url | string,handler}
      */
-    loadScript(option) {
-        if (this.context) {
-            this.context.appendElement(option);
+    loadFile(option) {
+        if (this.context.platform) {
+            this.context.platform.loadFile(option);
         }
     }
 
-    loadModule(path,onload) {
-        //new Module({ modulePath: path, moduleHandler: this }); 
-    }
-
-    handleModule(module) {
-        console.log("module/Module.js : " + module.modulePath + '  Loaded.');
+    /**
+     * option : {content:data,path}
+     * 
+     * responseXML | 
+     */
+    handleFile(option) {
+        switch (option.type) {
+            case 'text': { } break;
+            case 'xml': {
+                console.log('XML Loaded : ');
+                console.log(option.content);
+            } break;
+            case 'obj': { } break;
+            default: break;
+        }
     }
 }
 

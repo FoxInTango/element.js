@@ -20,3 +20,5 @@ export class View {
         }
     }
 }
+
+ElementJS.appendComponent(new View());
