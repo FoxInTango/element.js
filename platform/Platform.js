@@ -68,7 +68,6 @@ export class Platform {
         /**
          * method : XHR | Fetch API
          */
-
         switch (option.method) {
             case 'xhr': {
                 this.sendXHR(option);
@@ -100,9 +99,14 @@ export class Platform {
         if (this.host == ELEMENT_HOST_WEB) {
             const xhr = new XMLHttpRequest();
             xhr.onload = () => {
+                let contentType = xhr.getResponseHeader("Content-Type");
                 if (xhr.status == 200 && xhr.responseXML != null) {
                     if (option.handler) { option.handler.handleFile({ type: 'xml', content: xhr.responseXML, path: option.path }); }
-                } else {
+                } else if (contentType === 'application / json') {
+                    if (option.handler) { option.handler.handleFile({ type: 'json', content: xhr.responseText, path: option.path }); }
+                }
+                else {
+                    if (option.handler) { option.handler.handleFile({ type: 'unknown', content: xhr.responseText, path: option.path }); }
                 }
             }
             xhr.open("GET", option.path);

@@ -344,3 +344,6 @@ window.onload = function () {
 
     console.log(window);
 }
+
+
+// JavaScript instanceof typeof Object.prototype.toString.call() https://blog.csdn.net/qq_46658751/article/details/123687605

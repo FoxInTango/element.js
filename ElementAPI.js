@@ -140,7 +140,16 @@ export class ElementAPI extends Element {
                 console.log('XML Loaded : ');
                 console.log(option.content);
             } break;
+            case 'json': {
+                const obj = JSON.parse(option.content);
+                console.log('XHR JSON Loaded');
+                console.log(option.content);
+            } break;
             case 'obj': { } break;
+            case 'unknown': {
+                console.log('Unknown Content Loaded');
+                console.log(option.content);
+            } break;
             default: break;
         }
     }
