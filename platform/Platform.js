@@ -19,6 +19,7 @@ export class Platform {
         /**
          * 
          */
+        this.renderTargetMap = new Map();
         this.host = option.host;
         this.vm = option.vm;
         this.WebWorker = option.WebWorker;
@@ -118,6 +119,10 @@ export class Platform {
 
     fetch(option) { }
 
-    loopupRenderTarget() { }
+    loopupRenderTarget() {
+
+    }
     createRenderTarget() { }
+    removeRenderTarget() { }
+    updateRenderTarget() { }
 }
