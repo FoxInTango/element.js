@@ -15,6 +15,9 @@ export class UIContext extends Context {
         this.elementMap = new Map();
     }
 
+    boot(option) {
+        super.boot(option);
+    }
     appendElement(e) {
         
     }

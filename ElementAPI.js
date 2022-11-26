@@ -1,4 +1,4 @@
-import { Platform } from './platform/Platform';
+import { Module } from './core/Module';
 import { Element } from './core/Element';
 
 import { UIContext } from './ui/ui';
@@ -13,6 +13,8 @@ export class ElementAPI extends Element {
         this.elementName = 'ElementAPI';
         this.context = new UIContext();
         this.moduleMap = new Map();
+
+        this.documentMap = new Map();
 
         /** Asset Map
          *  UIColor
@@ -58,23 +60,19 @@ export class ElementAPI extends Element {
     /**
      * option:{name:'',namespace:namespaceObj}
      */
-    setNamespace(option) {
+    appendNamespace(option) {
         if (option.namespace) {
             
         }
     }
-    getNamespace(name) { return this.namespaceMap.get(name); }
+
+    lookupNamespace(name) { return this.namespaceMap.get(name); }
 
     /**
      * option:{namespace:'',name:'',theme:themObj}
      */
-    setTheme(option) { }
-    getTheme(name) { }
-    /**
-     * 环境注册
-     */
-    appendContext() { }
-    removeContext() { }
+    appendTheme(option) { }
+    lookupTheme(name) { }
     /**
      * 组件注册
      */
@@ -90,8 +88,6 @@ export class ElementAPI extends Element {
      *  }
      */
     boot(option) {
-        this.context.platform = null;
-        this.bootOption = option;
         this.context.boot(option);
         if (option.platform == 'web') {
             this.loadUI();
@@ -145,9 +141,11 @@ ElementAPI.Element = Element;
 ElementAPI.UIElement = UIElement;
 ElementAPI.UIComponent = UIComponent;
 ElementAPI.UIContext = UIContext;
+ElementAPI.Module = Module;
 
 export * from './index.js';
 export * as default from './index.js';
 
 globalThis.ElementJS = new ElementAPI();
+ElementJS.Module = Module;
 

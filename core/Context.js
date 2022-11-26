@@ -1,3 +1,4 @@
+import { Platform } from '../platform/Platform';
 export class Context {
     constructor() {
         this.target = null;
@@ -6,6 +7,7 @@ export class Context {
     global() { return globalThis; }
 
     boot(option) {
+        this.platform = new Platform(option);
     }
 
     elementWithID(id) { return null; }
