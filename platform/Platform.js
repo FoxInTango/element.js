@@ -87,16 +87,20 @@ export class Platform {
     }
 
     loadXML(option) {
+        let parser = null;
         if (this.host == ELEMENT_HOST_WEB) {
-            var parser = new DOMParser();
-            let xml = parser.parseFromString(option.content, "text/xml");
-            if (xml) {
-                let document = { path: option.path, includes: [], subelements: [], namespaceStack: [] };
-                this.handleXMLElement(xml, document, document);
-                return document;
-            }
+            parser = new DOMParser()
         } else if (this.host == ELEMENT_HOST_NODE) {
-            
+            parser = new this.XML.DOMParser()
+        }
+
+        if (!parser) return false;
+        let xml = parser.parseFromString(option.content, "text/xml");
+        if (xml) {
+            let document = { path: option.path, includes: [], subelements: [], namespaceStack: [] };
+            if (option.namespace) { document.namespaceStack.push(option.namespace); }
+            this.handleXMLElement(xml, document, document);
+            return document;
         }
     }
 
@@ -109,7 +113,6 @@ export class Platform {
         /**
          * deal with this node
          */
-
         let new_element = { elementName: node.nodeName, subelements: [], attributes: [] };//Object.defineProperty()
         element.subelements.push(new_element);
         switch (node.nodeName) {
@@ -157,7 +160,9 @@ export class Platform {
             case 'string': { } break;
             case 'text': { } break;
             case 'segment': { } break;
-            default: break;
+            default: {
+                // ElementJS.componentMap
+            } break;
         }
         console.log("Platform.js::handleXMLElement -- NodeName : " + node.nodeName + " NodeType: " + node.nodeType);
         
