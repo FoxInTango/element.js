@@ -66,7 +66,7 @@ export class Platform {
     loadAudio(option) { }
 
     /**
-     * load asset file
+     * option : {path:'',handler:'',namespace:''}
      */
     loadFile(option) {
         /**
@@ -89,24 +89,80 @@ export class Platform {
     loadXML(option) {
         if (this.host == ELEMENT_HOST_WEB) {
             var parser = new DOMParser();
-            let document = parser.parseFromString(option.content, "text/xml");
-            if (document) {
-                console.log('XML File Loaded : ' + option.path);
-                this.handleXMLElement(document);
+            let xml = parser.parseFromString(option.content, "text/xml");
+            if (xml) {
+                let document = { path: option.path, includes: [], subelements: [], namespaceStack: [] };
+                this.handleXMLElement(xml, document, document);
+                return document;
             }
         } else if (this.host == ELEMENT_HOST_NODE) {
             
         }
     }
 
-    handleXMLElement(e) {
+    /**
+     * node      : xml node to be dealed 
+     * element   : parent of element will be created
+     * document  : current document
+     */
+    handleXMLElement(node,element,document) {
         /**
-         * deal with this element
+         * deal with this node
          */
-        console.log("Platform.js::handleXMLElement.");
-        console.log(e);
-        for (let i = 0; i < e.childNodes.length; i++) {
-            this.handleXMLElement(e.childNodes[i]);
+
+        let new_element = { elementName: node.nodeName, subelements: [], attributes: [] };//Object.defineProperty()
+        element.subelements.push(new_element);
+        switch (node.nodeName) {
+            /**
+             * download & target : 
+             * UIML.js
+             */
+            case 'include': {
+                let path = node.getAttribute("src");
+                if (path && path.length) {
+                    if (document) {
+                        document.includes.push(path);
+                    }
+                    this.loadFile({ path: path, handler: ElementJS, namespace: document.namespaceStack.length > 0 ? document.namespaceStack[document.namespaceStack.length - 1] : null });
+                }
+            } break;
+            case 'require': { } break;
+            case 'import': { } break;
+            case 'export': { } break;
+            case 'range': { } break;
+            case 'group': { } break;
+            case 'namespace': { } break;
+            case 'color': { } break;
+            case 'r': { } break;
+            case 'g': { } break;
+            case 'b': { } break;
+            case 'a': { } break;
+            case 'image': { } break;
+            case 'sprite': { } break;
+            case 'background': { } break;
+            case 'theme': { } break;
+            case 'frame': { } break;
+            case 'x': { } break;
+            case 'y': { } break;
+            case 'width': { } break;
+            case 'height': { } break;
+            case 'layout': { } break;
+            case 'slot': { } break;
+            case 'view': { } break;
+            case 'canvas': { } break;
+            case 'component': { } break;
+            case 'extends': { } break;
+            case 'page': { } break;
+            case 'segment': { } break;
+            case 'string': { } break;
+            case 'text': { } break;
+            case 'segment': { } break;
+            default: break;
+        }
+        console.log("Platform.js::handleXMLElement -- NodeName : " + node.nodeName + " NodeType: " + node.nodeType);
+        
+        for (let i = 0; i < node.childNodes.length; i++) {
+            this.handleXMLElement(node.childNodes[i], new_element, document);
         }
     }
 
@@ -129,7 +185,7 @@ export class Platform {
             xhr.onload = () => {
                 if (xhr.status == 200 && xhr.response != null) {
                     let contentType = xhr.getResponseHeader("Content-Type");
-                    if (option.handler) { option.handler.handleFile({ type: contentType, content: xhr.response, path: option.path }); }
+                    if (option.handler) { option.handler.handleFile({ type: contentType, content: xhr.response, path: option.path, namespace: option.namespace }); }
                 }
             }
             xhr.open("GET", option.path);

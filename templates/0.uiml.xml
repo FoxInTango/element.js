@@ -36,16 +36,16 @@
   <import></import>
   <export></export>
   <namespace></namespace>
-  <color></color><colors></colors>
+  <color></color>
   <image></image>
   <sprite></sprite>
-  <images></images>
   <background></background>
-  <sprites></sprites>
+  
   <theme></theme>
   <frame></frame>
   <layout></layout>
   <slot></slot>
+  
   <view></view>
   <svg></svg>
   <canvas></canvas>

@@ -1,4 +1,5 @@
 export * from './core/Namespace';
+export * from './core/Module'
 export * from './core/Event';
 export * from './core/Element';
 export * from './core/Context';

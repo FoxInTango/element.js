@@ -1,11 +1,9 @@
-import { Module } from './core/Module';
-import { Element } from './core/Element';
-
-import { UIContext } from './ui/ui';
-import { UIElement } from './ui/ui';
-import { UIComponent } from './ui/ui';
-
-import { Namespace } from './core/Namespace';
+import { Module } from './index';
+import { Element } from './index';
+import { Namespace } from './index';
+import { UIContext } from './index';
+import { UIElement } from './index';
+import { UIComponent } from './index';
 
 export class ElementAPI extends Element {
     constructor() {
@@ -114,6 +112,8 @@ export class ElementAPI extends Element {
                 let document = this.context.platform.loadXML(option);
                 if (document) {
                     this.documentMap.set(option.path, document);
+                    console.log('new document created .');
+                    console.log(this.documentMap);
                 }
             } else throw new Error('platform not ready');
         }
@@ -121,7 +121,7 @@ export class ElementAPI extends Element {
     }
 
     /**
-     * option : { path:url | string,handler}
+     * option : { path:url | string,handler:}
      */
     loadFile(option) {
         if (this.context.platform) {
@@ -153,7 +153,7 @@ export class ElementAPI extends Element {
                 console.log(option.content);
             } break;
             case 'application/json': {
-                console.log(this.loadDocument({ type: "json", content: option.content }));
+                console.log(this.loadDocument({ type: "json", content: option.content, namespace: option.namespace }));
             } break;
             case 'audio/mpeg': {
                 this.downloadMap.set(option.path, option.content);
@@ -172,17 +172,15 @@ export class ElementAPI extends Element {
     }
 }
 
-ElementAPI.Element = Element;
-ElementAPI.UIElement = UIElement;
-ElementAPI.UIComponent = UIComponent;
-ElementAPI.UIContext = UIContext;
-ElementAPI.Module = Module;
-
 export * from './index.js';
 export * as default from './index.js';
 
 if (!globalThis.ElementJS) {
     globalThis.ElementJS = new ElementAPI();
     ElementJS.Module = Module;
+    ElementJS.Element = Element;
+    ElementJS.UIElement = UIElement;
+    ElementJS.UIComponent = UIComponent;
+    ElementJS.UIContext = UIContext;
 }
 
