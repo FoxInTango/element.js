@@ -22,47 +22,23 @@ export class ElementAPI extends Element {
          * ['document file path'] : {node tree}
          */
         this.documentMap = new Map();
-
-        /** Asset Map
-         *  UIColor
-         *  UIGradient
-         *  UIImage
-         *  UIImageSlice
-         *  UIStyle
-         *  UILayout
-         *  UIStatus
-         *  UITheme
-         *  
-         *  UIComponents
-         *  
-         *  按需分配
-         */
         
         this.namespaceMap = new Map();
         this.namespaceMap.set('default', new Namespace());
-        //this.namespaceMap['default'] = new Namespace();
-        console.log('ElementJS default namespace.');
-        console.log(this.namespaceMap.get('default'));
-
-        this.namespaceMap.forEach((val, key) => {
-            console.log('namespace ' + key);
-            console.log(val);
-        });
-
-        /**
+    
         this.themeMap = new Map();
-        
         this.colorMap = new Map();
         this.gradientMap = new Map();
         this.imageMap = new Map();
         this.spriteMap = new Map();
-
         this.statusMap = new Map();
         this.styleMap = new Map();
         this.layoutMap = new Map();
         
         this.componentMap = new Map();
-        */
+        this.namespaceMap.forEach((val, key) => {
+
+        });
     }
 
     /**
@@ -130,6 +106,21 @@ export class ElementAPI extends Element {
     }
 
     /**
+     * option : {type:xml | json,content:}
+     */
+    loadDocument(option) {
+        if (option.type == 'xml') {
+            if (this.context.platform) {
+                let document = this.context.platform.loadXML(option);
+                if (document) {
+                    this.documentMap.set(option.path, document);
+                }
+            } else throw new Error('platform not ready');
+        }
+        else if (option.type == 'json') { return JSON.parse(option.content); }
+    }
+
+    /**
      * option : { path:url | string,handler}
      */
     loadFile(option) {
@@ -146,10 +137,7 @@ export class ElementAPI extends Element {
     handleFile(option) {
         switch (option.type) {
             case 'text/xml': {
-                console.log('XHR XML Loaded : ');
-                console.log(option.path);
-                console.log(option.type);
-                console.log(option.content);
+                this.loadDocument({ type: "xml", content: option.content, path: option.path });
             } break;
             case 'application/xml': {
                 console.log('XHR XML Loaded : ');
@@ -165,31 +153,19 @@ export class ElementAPI extends Element {
                 console.log(option.content);
             } break;
             case 'application/json': {
-                const obj = JSON.parse(option.content);
-                console.log('XHR JSON Loaded');
-                console.log(option.path);
-                console.log(option.type);
-                console.log(option.content);
+                console.log(this.loadDocument({ type: "json", content: option.content }));
             } break;
             case 'audio/mpeg': {
-                console.log('XHR AUDIO Loaded');
-                console.log(option.path);
-                console.log(option.type);
+                this.downloadMap.set(option.path, option.content);
             } break;
             case 'image/png': {
-                console.log('XHR IMAGE Loaded');
-                console.log(option.path);
-                console.log(option.type);
+                this.downloadMap.set(option.path, option.content);
             } break;
             case 'image/jpeg': {
-                console.log('XHR IMAGE Loaded');
-                console.log(option.path);
-                console.log(option.type);
+                this.downloadMap.set(option.path, option.content);
             } break;
             case 'application/javascript': {
-                console.log('XHR SCRIPT Loaded');
-                console.log(option.path);
-                console.log(option.type);
+                this.downloadMap.set(option.path, option.content);
             } break;
             default: break;
         }
@@ -205,6 +181,8 @@ ElementAPI.Module = Module;
 export * from './index.js';
 export * as default from './index.js';
 
-globalThis.ElementJS = new ElementAPI();
-ElementJS.Module = Module;
+if (!globalThis.ElementJS) {
+    globalThis.ElementJS = new ElementAPI();
+    ElementJS.Module = Module;
+}
 

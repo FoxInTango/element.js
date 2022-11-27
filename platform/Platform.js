@@ -38,8 +38,8 @@ export class Platform {
         }
 
         this.worker.onmessage = function (e) {
-            console.log('Message received from worker script');
-            console.log(e);
+            //console.log('Message received from worker script');
+            //console.log(e);
         }
     }
 
@@ -87,8 +87,27 @@ export class Platform {
     }
 
     loadXML(option) {
-        var parser = new DOMParser();
-        return parser.parseFromString(text, "text/xml");
+        if (this.host == ELEMENT_HOST_WEB) {
+            var parser = new DOMParser();
+            let document = parser.parseFromString(option.content, "text/xml");
+            if (document) {
+                console.log('XML File Loaded : ' + option.path);
+                this.handleXMLElement(document);
+            }
+        } else if (this.host == ELEMENT_HOST_NODE) {
+            
+        }
+    }
+
+    handleXMLElement(e) {
+        /**
+         * deal with this element
+         */
+        console.log("Platform.js::handleXMLElement.");
+        console.log(e);
+        for (let i = 0; i < e.childNodes.length; i++) {
+            this.handleXMLElement(e.childNodes[i]);
+        }
     }
 
     saveXML() { }
