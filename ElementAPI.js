@@ -14,6 +14,13 @@ export class ElementAPI extends Element {
         this.context = new UIContext();
         this.moduleMap = new Map();
 
+        /**
+         * ['file path']:{content:}
+         */
+        this.downloadMap = new Map();
+        /**
+         * ['document file path'] : {node tree}
+         */
         this.documentMap = new Map();
 
         /** Asset Map
@@ -57,6 +64,21 @@ export class ElementAPI extends Element {
         this.componentMap = new Map();
         */
     }
+
+    /**
+     *  初始化
+     *  option :{
+     *      platform:{ host : web|node|...,api:vm | ...}
+     *      index:index.xml
+     *      modules:['','','']
+     *  }
+     */
+    boot(option) {
+        this.context.boot(option);
+        if (option.platform == 'web') {
+            this.loadUI();
+        }
+    }
     /**
      * option:{name:'',namespace:namespaceObj}
      */
@@ -79,21 +101,7 @@ export class ElementAPI extends Element {
     
     appendComponent(component) { }
     removeComponent(component) { }
-    /**
-     *  初始化
-     *  option :{
-     *      platform:{ host : web|node|...,api:vm | ...}
-     *      index:index.xml
-     *      modules:['','','']
-     *  }
-     */
-    boot(option) {
-        this.context.boot(option);
-        if (option.platform == 'web') {
-            this.loadUI();
-        }
-    }
-
+    
     handleElement(node, index, parent) {
         /** 过滤无效节点
          */
@@ -114,9 +122,11 @@ export class ElementAPI extends Element {
         }
     }
 
-
-    loadUI() {
-        
+    //
+    loadUI(option) {
+        /**
+         * switch option type : path | document
+         */
     }
 
     /**
@@ -135,20 +145,51 @@ export class ElementAPI extends Element {
      */
     handleFile(option) {
         switch (option.type) {
-            case 'text': { } break;
-            case 'xml': {
-                console.log('XML Loaded : ');
+            case 'text/xml': {
+                console.log('XHR XML Loaded : ');
+                console.log(option.path);
+                console.log(option.type);
                 console.log(option.content);
             } break;
-            case 'json': {
+            case 'application/xml': {
+                console.log('XHR XML Loaded : ');
+                console.log(option.path);
+                console.log(option.type);
+                console.log(option.content);
+            } break;
+            case 'text/json': {
                 const obj = JSON.parse(option.content);
                 console.log('XHR JSON Loaded');
+                console.log(option.path);
+                console.log(option.type);
                 console.log(option.content);
             } break;
-            case 'obj': { } break;
-            case 'unknown': {
-                console.log('Unknown Content Loaded');
+            case 'application/json': {
+                const obj = JSON.parse(option.content);
+                console.log('XHR JSON Loaded');
+                console.log(option.path);
+                console.log(option.type);
                 console.log(option.content);
+            } break;
+            case 'audio/mpeg': {
+                console.log('XHR AUDIO Loaded');
+                console.log(option.path);
+                console.log(option.type);
+            } break;
+            case 'image/png': {
+                console.log('XHR IMAGE Loaded');
+                console.log(option.path);
+                console.log(option.type);
+            } break;
+            case 'image/jpeg': {
+                console.log('XHR IMAGE Loaded');
+                console.log(option.path);
+                console.log(option.type);
+            } break;
+            case 'application/javascript': {
+                console.log('XHR SCRIPT Loaded');
+                console.log(option.path);
+                console.log(option.type);
             } break;
             default: break;
         }

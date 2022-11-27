@@ -11,8 +11,11 @@ const PlatformTemplate = {
     HTTPS: {}
 }
 
-const ELEMENT_HOST_WEB = 'web';
-const ELEMENT_HOST_NODE = 'node';
+export const ELEMENT_HOST_WEB = 'web';
+export const ELEMENT_HOST_NODE = 'node';
+
+export const ELEMENT_HTTP_METHOD_GET  = 'GET';
+export const ELEMENT_HTTP_METHOD_POST = 'GET';
 
 export class Platform {
     constructor(option) {
@@ -88,31 +91,32 @@ export class Platform {
         return parser.parseFromString(text, "text/xml");
     }
 
-    loadJSON() { }
+    saveXML() { }
 
+
+    loadJSON() { }
+    saveJSON() { }
     echo() {
         console.log("---------------- Platform ----------------");
     }
 
     /** https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+     * 
+     * MIMETYPE.js
      */
     sendXHR(option) {
         if (this.host == ELEMENT_HOST_WEB) {
             const xhr = new XMLHttpRequest();
             xhr.onload = () => {
-                let contentType = xhr.getResponseHeader("Content-Type");
-                if (xhr.status == 200 && xhr.responseXML != null) {
-                    if (option.handler) { option.handler.handleFile({ type: 'xml', content: xhr.responseXML, path: option.path }); }
-                } else if (contentType === 'application / json') {
-                    if (option.handler) { option.handler.handleFile({ type: 'json', content: xhr.responseText, path: option.path }); }
-                }
-                else {
-                    if (option.handler) { option.handler.handleFile({ type: 'unknown', content: xhr.responseText, path: option.path }); }
+                if (xhr.status == 200 && xhr.response != null) {
+                    let contentType = xhr.getResponseHeader("Content-Type");
+                    if (option.handler) { option.handler.handleFile({ type: contentType, content: xhr.response, path: option.path }); }
                 }
             }
             xhr.open("GET", option.path);
             xhr.send();
-        } else if (this.host == ELEMENT_HOST_NODE) {
+        }
+        else if (this.host == ELEMENT_HOST_NODE) {
             
         }
     }
