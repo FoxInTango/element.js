@@ -86,6 +86,20 @@ export class Platform {
         }
     }
 
+    saveFile(option) { }
+    /** document relative 
+     *                                             
+     *  ElementJS.LoadFile -- Platform.LoadFile -- ElementJS.HandleFile --  ElementJS.LoadDOC
+     *                          |                                                |
+     *                          |                                                |
+     *                          |                                           Platform.LoadXML
+     *                          |                                                |
+     *                          |                                                |
+     *                          -----------------------------------------------include
+     *                              
+     *                                
+     *                                
+     */
     loadXML(option) {
         let parser = null;
         if (this.host == ELEMENT_HOST_WEB) {
@@ -97,9 +111,8 @@ export class Platform {
         if (!parser) return false;
         let xml = parser.parseFromString(option.content, "text/xml");
         if (xml) {
-            let document = { path: option.path, includes: [], subelements: [], namespaceStack: [] };
-            if (option.namespace) { document.namespaceStack.push(option.namespace); }
-            this.handleXMLElement(xml, document, document);
+            let document = { path: option.path, subelements: new Array(), attributes: new Array() };
+            this.handleXMLElement(xml, document, null);
             return document;
         }
     }
@@ -109,11 +122,13 @@ export class Platform {
      * element   : parent of element will be created
      * document  : current document
      */
-    handleXMLElement(node,element,document) {
+    handleXMLElement(node,element,namespace) {
         /**
          * deal with this node
+         * Object.defineProperty()
          */
-        let new_element = { elementName: node.nodeName, subelements: [], attributes: [] };//Object.defineProperty()
+        let new_element = { elementName: node.nodeName, subelements: new Array(), attributes: new Array() };
+        let new_namespace = namespace;
         element.subelements.push(new_element);
         switch (node.nodeName) {
             /**
@@ -123,18 +138,24 @@ export class Platform {
             case 'include': {
                 let path = node.getAttribute("src");
                 if (path && path.length) {
-                    if (document) {
-                        document.includes.push(path);
-                    }
-                    this.loadFile({ path: path, handler: ElementJS, namespace: document.namespaceStack.length > 0 ? document.namespaceStack[document.namespaceStack.length - 1] : null });
+                    this.loadFile({ path: path, handler: ElementJS, namespace: new_namespace });
                 }
             } break;
-            case 'require': { } break;
+            case 'require': {
+                let path = node.getAttribute("src");
+                if (path && path.length) {
+                    this.loadFile({ path: path, handler: ElementJS, namespace: new_namespace });
+                }
+            } break;
             case 'import': { } break;
             case 'export': { } break;
             case 'range': { } break;
             case 'group': { } break;
-            case 'namespace': { } break;
+            case 'namespace': {
+                if (node.getAttribute('name') && node.getAttribute('name').length) {
+                    new_namespace = node.getAttribute('name');
+                }
+            } break;
             case 'color': { } break;
             case 'r': { } break;
             case 'g': { } break;
@@ -164,10 +185,11 @@ export class Platform {
                 // ElementJS.componentMap
             } break;
         }
-        console.log("Platform.js::handleXMLElement -- NodeName : " + node.nodeName + " NodeType: " + node.nodeType);
+        console.log("Platform.js::handleXMLElement -- NodeName : " + node.nodeName + " NodeType: " + node.nodeType + " NodeContent: " + node.nodeValue + "NodeAttributes : ");
+        console.log(node.attributes);
         
         for (let i = 0; i < node.childNodes.length; i++) {
-            this.handleXMLElement(node.childNodes[i], new_element, document);
+            this.handleXMLElement(node.childNodes[i], new_element, new_namespace);
         }
     }
 
@@ -204,9 +226,17 @@ export class Platform {
     fetch(option) { }
 
     loopupRenderTarget() {
-
     }
     createRenderTarget() { }
     removeRenderTarget() { }
     updateRenderTarget() { }
+
+    /**
+     * https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL
+     * https://www.cnblogs.com/tianma3798/p/13582402.html
+     * objectURL = URL.createObjectURL(blob || file);
+     * URL.revokeObjectURL
+     */
+    createObjectURL() { }
+    removeObjectURL() { }
 }

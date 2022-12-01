@@ -1,5 +1,16 @@
 /**
  * Come from nginx-1.23.2 mime.type
+ * 
+ * image
+ * audio
+ * video
+ * 
+ * uiml
+ * html
+ * 
+ * javascript
+ * wasm
+ * 
  */
 const MIMEMap = new Map(
     [
@@ -48,6 +59,7 @@ types {
     image/gif                                        gif;
     image/jpeg                                       jpeg jpg;
     application/javascript                           js;
+    application/wasm                                 wasm;
     application/atom + xml                             atom;
     application/rss + xml                              rss;
 

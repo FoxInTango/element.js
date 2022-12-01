@@ -59,4 +59,12 @@ export class Element {
     setAttribute(option) {
 
     }
+
+    getAttribute(option) { }
+
+    set elementName(name) {
+        if (this.attributes) this.attributes.elementName = name;
+    }
+
+    get elementName() { return this.attributes ? this.attributes.name : null; }
 }

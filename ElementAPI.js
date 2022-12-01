@@ -11,6 +11,7 @@ export class ElementAPI extends Element {
         this.elementName = 'ElementAPI';
         this.context = new UIContext();
         this.moduleMap = new Map();
+        this.fileHandlerMap = new Map();
 
         /**
          * ['file path']:{content:}
@@ -50,7 +51,6 @@ export class ElementAPI extends Element {
     boot(option) {
         this.context.boot(option);
         if (option.platform == 'web') {
-            this.loadUI();
         }
     }
     /**
@@ -73,55 +73,15 @@ export class ElementAPI extends Element {
      * 组件注册
      */
     
-    appendComponent(component) { }
+    appendComponent(component) {
+        if (component && component.name) {
+            this.componentMap.set(component.name(), component);
+        }
+    }
     removeComponent(component) { }
-    
-    handleElement(node, index, parent) {
-        /** 过滤无效节点
-         */
-        if (node.nodeName === '#text' || node.nodeName == '#comment') { return; }
-        //console.log(node.nodeName);
-        /** 处理组件
-         */
-        if (this.componentMap.has(node.nodeName)) {
-            console.log("COMPONENT EXIST : " + this.componentMap.get(node.nodeName));
-            if (parent) {
-                console.log('    with parent : ' + parent.nodeName);
-            }
-        } else {
-            console.log('类型: ' + node.nodeName + '    ' + node.nodeType + '    id: ' + node.id + '    width : ' + node.getAttribute("width") + '    anyThing: ' + node.getAttribute("anyThing"));
-            if (parent) {
-                console.log('    with parent : ' + parent.nodeName);
-            }
-        }
-    }
-
-    //
-    loadUI(option) {
-        /**
-         * switch option type : path | document
-         */
-    }
 
     /**
-     * option : {type:xml | json,content:}
-     */
-    loadDocument(option) {
-        if (option.type == 'xml') {
-            if (this.context.platform) {
-                let document = this.context.platform.loadXML(option);
-                if (document) {
-                    this.documentMap.set(option.path, document);
-                    console.log('new document created .');
-                    console.log(this.documentMap);
-                }
-            } else throw new Error('platform not ready');
-        }
-        else if (option.type == 'json') { return JSON.parse(option.content); }
-    }
-
-    /**
-     * option : { path:url | string,handler:}
+     * option : { path:url | string,promoter:object,handler:object|function}
      */
     loadFile(option) {
         if (this.context.platform) {
@@ -130,9 +90,7 @@ export class ElementAPI extends Element {
     }
 
     /**
-     * option : {content:data,path}
-     * 
-     * responseXML | 
+     * option : {path:'',content:data,promoter:object|function,handler:object|function }
      */
     handleFile(option) {
         switch (option.type) {
@@ -170,6 +128,46 @@ export class ElementAPI extends Element {
             default: break;
         }
     }
+
+    /**
+     * option : {type:xml | json,content:}
+     */
+    loadDocument(option) {
+        if (option.type == 'xml') {
+            if (this.context.platform) {
+                let document = this.context.platform.loadXML(option);
+                if (document) {
+                    this.documentMap.set(option.path, document);
+                    console.log('new document created .');
+                    console.log(this.documentMap);
+                }
+            } else throw new Error('platform not ready');
+        }
+        else if (option.type == 'json') { return JSON.parse(option.content); }
+    }
+    /**
+     * option : {document:DOCTree,path:'',instruction:'ui|ms|'}
+     */
+    handleDocument(option) {
+        if (option && option.document) {
+            switch (option.document.instruction) {
+                case 'uiml': { } break;
+                case 'mnml': { } break;
+                default: { } break;
+            }
+        }
+    }
+
+    /**
+     * 
+     * option : {}
+     */
+    buildUI(option) {
+        /**
+         * switch option type : path | document
+         * option : {"type"}
+         */
+    }
 }
 
 export * from './index.js';
@@ -177,10 +175,10 @@ export * as default from './index.js';
 
 if (!globalThis.ElementJS) {
     globalThis.ElementJS = new ElementAPI();
+    
     ElementJS.Module = Module;
     ElementJS.Element = Element;
     ElementJS.UIElement = UIElement;
     ElementJS.UIComponent = UIComponent;
     ElementJS.UIContext = UIContext;
 }
-

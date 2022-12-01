@@ -1,6 +1,12 @@
 class DOMEventHandler {
     /**
      * https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event
+     * 
+     * MouseEvent 
+     * PointerEvent
+     * KeyboardEvent
+     * ContentEvent
+     * LifeCircleEvent
      */
     constructor(s) {
         this.onclick = s.onclick;

@@ -4,6 +4,7 @@ class UIImageAttributes {
         this.status = null;
     }
 }
+
 export class UIImage {
     constructor() {
         this.attributes = new UIImageAttributes();
