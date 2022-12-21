@@ -12,6 +12,7 @@ function walk_element(node, callback, parent) {
     for (var i = 0; i < node.childNodes.length; i++) {
         var subnode = node.childNodes[i];
         callback(subnode, i, node);
+
         walk_element(subnode, callback, node);
     }
 }
