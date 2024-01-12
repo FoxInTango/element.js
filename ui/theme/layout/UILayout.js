@@ -1,16 +1,17 @@
 /**
- * ²¼¾ÖÀàÐÍ -- Î»ÖÃ Óë ³ß´ç
- * 
- * ¾ø¶Ô¶¨Î»
- * 
- * 
- * OVERFLOW -- ¸¸ÔªËØÐÐÎª Óë ×ÓÔªËØÐÐÎª
- * 
+ * å¸ƒå±€ç±»åž‹ -- ä½ç½® ä¸Ž å°ºå¯¸
+ *
+ * ç»å¯¹å®šä½
+ *
+ *
+ * OVERFLOW -- çˆ¶å…ƒç´ è¡Œä¸º ä¸Ž å­å…ƒç´ è¡Œä¸º
+ *
  */
+
 
 export class UILayout {
     constructor() {
-        
+
         this.frame = null;
     }
 }

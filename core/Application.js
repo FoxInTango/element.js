@@ -1,5 +1,5 @@
 import { Platform } from '../platform/Platform';
-export class Context {
+export class Application {
     constructor() {
         this.target = null;
     }

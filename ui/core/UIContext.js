@@ -1,5 +1,3 @@
-import { Context } from '../../core/Context';
-
 var line = {
     name: "line",
     style: ""
@@ -8,7 +6,7 @@ var line = {
 var path = {}
 
 var rect = {}
-export class UIContext extends Context {
+export class UIContext {
     constructor() {
         super();
         this.elements = new Array();

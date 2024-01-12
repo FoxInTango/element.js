@@ -1,7 +1,7 @@
 export class UIFrame {
     constructor(x, y, width, height) {
-        /** 
-         *  ¸ù¾İ²ÎÊıÊıÄ¿ÅĞ¶Ï´«ÈëÖµÀàĞÍ
+        /**
+         *  æ ¹æ®å‚æ•°æ•°ç›®åˆ¤æ–­ä¼ å…¥å€¼ç±»å‹
          */
 
         switch (arguments.length) {
@@ -20,6 +20,6 @@ export class UIFrame {
             } break;
             default: return null;
         }
-        
+
     }
 }
