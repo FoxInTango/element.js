@@ -1,5 +1,6 @@
 import { Platform } from '../platform/Platform';
-export class Application {
+import { Element } from './Element';
+export class Application extends Element {
     constructor() {
         this.target = null;
     }

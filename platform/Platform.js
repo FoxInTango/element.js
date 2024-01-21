@@ -180,7 +180,7 @@ export class Platform {
             case 'segment': { } break;
             case 'string': { } break;
             case 'text': { } break;
-            case 'segment': { } break;
+            //case 'segment': { } break;
             default: {
                 // ElementJS.componentMap
             } break;

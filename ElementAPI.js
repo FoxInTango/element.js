@@ -1,11 +1,12 @@
-import { Module } from './index';
-import { Element } from './index';
-import { Namespace } from './index';
-import { UIContext } from './index';
-import { UIElement } from './index';
+import { Module      } from './index';
+import { Element     } from './index';
+import { Namespace   } from './index';
+import { UIContext   } from './index';
+import { UIElement   } from './index';
 import { UIComponent } from './index';
+import { Application } from './index';
 
-export class ElementAPI extends Element {
+export class ElementAPI extends Application {
     constructor() {
         super();
         this.elementName = 'ElementAPI';
@@ -176,9 +177,9 @@ export * as default from './index.js';
 if (!globalThis.ElementJS) {
     globalThis.ElementJS = new ElementAPI();
     
-    ElementJS.Module = Module;
-    ElementJS.Element = Element;
-    ElementJS.UIElement = UIElement;
+    ElementJS.Module      = Module;
+    ElementJS.Element     = Element;
+    ElementJS.UIElement   = UIElement;
     ElementJS.UIComponent = UIComponent;
-    ElementJS.UIContext = UIContext;
+    ElementJS.UIContext   = UIContext;
 }

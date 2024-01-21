@@ -8,14 +8,11 @@ var path = {}
 var rect = {}
 export class UIContext {
     constructor() {
-        super();
+        
         this.elements = new Array();
         this.elementMap = new Map();
     }
 
-    boot(option) {
-        super.boot(option);
-    }
     appendElement(e) {
         
     }
