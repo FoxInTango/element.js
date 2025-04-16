@@ -94,6 +94,9 @@
     }
   };
   var Element = class {
+    /** interface
+     *  
+     */
     constructor() {
       if (arguments.length != 0 && arguments[0] === "super") {
         console.log("Element.js::super call.");
@@ -102,6 +105,10 @@
         this.attributes = new ElementAttributes();
       this.application = null;
     }
+    /**
+     * option : attribute name or attribute object 
+     *          attribute - "name@[namespace]"
+     */
     setAttribute(option) {
     }
     getAttribute(option) {
@@ -154,6 +161,9 @@
     }
     loadAudio(option) {
     }
+    /**
+     * option : {path:'',handler:'',namespace:''}
+     */
     loadFile(option) {
       switch (option.method) {
         case "xhr":
@@ -173,6 +183,19 @@
     }
     saveFile(option) {
     }
+    /** document relative 
+     *                                             
+     *  ElementJS.LoadFile -- Platform.LoadFile -- ElementJS.HandleFile --  ElementJS.LoadDOC
+     *                          |                                                |
+     *                          |                                                |
+     *                          |                                           Platform.LoadXML
+     *                          |                                                |
+     *                          |                                                |
+     *                          -----------------------------------------------include
+     *                              
+     *                                
+     *                                
+     */
     loadXML(option) {
       let parser = null;
       if (this.host == ELEMENT_HOST_WEB) {
@@ -189,6 +212,11 @@
         return document2;
       }
     }
+    /**
+     * node      : xml node to be dealed 
+     * element   : parent of element will be created
+     * document  : current document
+     */
     handleXMLElement(node, element, namespace) {
       let new_element = { elementName: node.nodeName, subelements: new Array(), attributes: new Array() };
       let new_namespace = namespace;
@@ -349,6 +377,10 @@
     echo() {
       console.log("---------------- Platform ----------------");
     }
+    /** https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+     * 
+     * MIMETYPE.js
+     */
     sendXHR(option) {
       if (this.host == ELEMENT_HOST_WEB) {
         const xhr = new XMLHttpRequest();
@@ -375,6 +407,12 @@
     }
     updateRenderTarget() {
     }
+    /**
+     * https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL
+     * https://www.cnblogs.com/tianma3798/p/13582402.html
+     * objectURL = URL.createObjectURL(blob || file);
+     * URL.revokeObjectURL
+     */
     createObjectURL() {
     }
     removeObjectURL() {
@@ -386,6 +424,7 @@
     constructor() {
       this.target = null;
     }
+    // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis
     global() {
       return globalThis;
     }
@@ -401,14 +440,24 @@
     }
     updateElement() {
     }
+    /**
+     * dom/svg/canvas/websockets/webrtc/etc
+     */
     apiEnabled() {
     }
+    /**
+     * FileSystem | Local Storage | IndexedDB | Cookie
+     */
     loadFile() {
     }
     saveFile() {
     }
     exploreFS() {
     }
+    /**
+     * message : 
+     * target :http;//domain.com | ws://domain.com | ip://xxx.xxx.xxx.xxx
+     */
     sendMessage(message, target) {
     }
     dealMessage(message) {
@@ -417,21 +466,48 @@
     }
     xhr() {
     }
+    /**
+     * file/image/etc
+     */
     download(url) {
     }
     console() {
       return globalThis.console;
     }
+    /**
+     * return: XML DOC
+     */
     loadXML() {
     }
+    /**
+     * return: JSON OBJ
+     */
     loadJSON() {
     }
+    /**
+     * timeout,callback
+     */
     loadImage() {
     }
   };
 
   // core/Task.js
   var Task = class {
+    /**
+     * https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers
+     * https://developer.mozilla.org/en-US/docs/Web/API/Worklet
+     * https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+     * https://blog.csdn.net/ligang2585116/article/details/127489412
+     * 
+     * ∑Ω∞∏“ª £∫ WebWorker
+     *           JSON 
+     *           BLOB https://developer.mozilla.org/en-US/docs/Web/API/Blob
+     * ∑Ω∞∏∂˛ £∫ Shadow Document
+     * 
+     * https://developer.mozilla.org/en-US/docs/Web/API/Background_Tasks_API
+     * https://developer.mozilla.org/en-US/docs/Web/API/Background_Fetch_API
+     */
     constructor(progress, callback) {
     }
   };
@@ -465,10 +541,16 @@
     }
     removeElement(e) {
     }
+    /**
+     * ÔøΩÔøΩÔøΩÔøΩ‘™ÔøΩÿ≤ÔøΩÔøΩÔøΩÔøΩÔøΩ¬ºÔøΩÔøΩÔøΩ”¶
+     */
     render(e) {
       switch (e.name) {
       }
     }
+    /** drawing
+     * 
+     */
     clear() {
     }
     clearRect() {
@@ -489,6 +571,9 @@
     }
     stroke() {
     }
+    /** event
+     * 
+     */
   };
 
   // ui/core/UIElement.js
@@ -727,11 +812,22 @@
       this.namespaceMap.forEach((val, key) => {
       });
     }
+    /**
+     *  ÂàùÂßãÂåñ
+     *  option :{
+     *      platform:{ host : web|node|...,api:vm | ...}
+     *      index:index.xml
+     *      modules:['','','']
+     *  }
+     */
     boot(option) {
       this.context.boot(option);
       if (option.platform == "web") {
       }
     }
+    /**
+     * option:{name:'',namespace:namespaceObj}
+     */
     appendNamespace(option) {
       if (option.namespace) {
       }
@@ -739,10 +835,16 @@
     lookupNamespace(name) {
       return this.namespaceMap.get(name);
     }
+    /**
+     * option:{namespace:'',name:'',theme:themObj}
+     */
     appendTheme(option) {
     }
     lookupTheme(name) {
     }
+    /**
+     * ÁªÑ‰ª∂Ê≥®ÂÜå
+     */
     appendComponent(component) {
       if (component && component.name) {
         this.componentMap.set(component.name(), component);
@@ -750,11 +852,17 @@
     }
     removeComponent(component) {
     }
+    /**
+     * option : { path:url | string,promoter:object,handler:object|function}
+     */
     loadFile(option) {
       if (this.context.platform) {
         this.context.platform.loadFile(option);
       }
     }
+    /**
+     * option : {path:'',content:data,promoter:object|function,handler:object|function }
+     */
     handleFile(option) {
       switch (option.type) {
         case "text/xml":
@@ -808,6 +916,9 @@
           break;
       }
     }
+    /**
+     * option : {type:xml | json,content:}
+     */
     loadDocument(option) {
       if (option.type == "xml") {
         if (this.context.platform) {
@@ -823,6 +934,9 @@
         return JSON.parse(option.content);
       }
     }
+    /**
+     * option : {document:DOCTree,path:'',instruction:'ui|ms|'}
+     */
     handleDocument(option) {
       if (option && option.document) {
         switch (option.document.instruction) {
@@ -841,6 +955,10 @@
         }
       }
     }
+    /**
+     * 
+     * option : {}
+     */
     buildUI(option) {
     }
   };

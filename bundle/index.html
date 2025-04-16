@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>语音识别与合成</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>语音识别与合成</h1>
+
+    <button id="startRecognition">开始识别</button>
+    <button id="startSynthesis">开始合成</button>
+
+    <p>语音识别结果：<span id="recognitionResult"></span></p>
+    <p>输入文本：<input type="text" id="inputText" value="你好，世界！"></p>
+
+    <label for="voiceSelect">选择音色：</label>
+    <select id="voiceSelect"></select>
+
+    <script>
+        // 语音识别
+        const startRecognitionButton = document.getElementById('startRecognition');
+        const recognitionResultSpan = document.getElementById('recognitionResult');
+
+        const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+        recognition.lang = 'zh-CN'; // 设置语言为中文
+        recognition.continuous = false; // 单次识别
+
+        startRecognitionButton.addEventListener('click', () => {
+            recognition.start();
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                recognitionResultSpan.textContent = transcript;
+            };
+            recognition.onerror = (event) => {
+                recognitionResultSpan.textContent = '识别错误: ' + event.error;
+            };
+        });
+
+        // 语音合成
+        const startSynthesisButton = document.getElementById('startSynthesis');
+        const inputText = document.getElementById('inputText');
+        const voiceSelect = document.getElementById('voiceSelect');
+
+        const synth = window.speechSynthesis;
+
+        function setSpeech() {
+            return new Promise(
+                function (resolve, reject) {
+                    //let synth = window.speechSynthesis;
+                    let id;
+
+                    id = setInterval(() => {
+                        if (synth.getVoices().length !== 0) {
+                            resolve(synth.getVoices());
+                            clearInterval(id);
+                        }
+                    }, 10);
+                }
+            )
+        }
+
+        let s = setSpeech();
+        s.then((voices) => voices.forEach(voice => {
+            const option = document.createElement('option');
+            option.textContent = voice.name;
+            option.value = voice.name;
+            voiceSelect.appendChild(option);
+        }));    // Or any other actions you want to take...
+        // 获取可用的语音列表
+        
+
+        const speak = (text, selectedVoiceName) => {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = selectedVoiceName;  // 设置语音
+            synth.speak(utterance);
+        };
+
+        startSynthesisButton.addEventListener('click', () => {
+            const selectedVoice = voiceSelect.value; // 获取选中的语音名称
+            speak(inputText.value, selectedVoice);
+        });
+
+        // 初始化语音合成
+        synth.onready = () => {
+            console.log('语音合成已准备就绪');
+        };
+
+        synth.onerror = (event) => {
+            console.error('语音合成错误：', event.error);
+        };
+    </script>
+
+</body>
+
+</html>

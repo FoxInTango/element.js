@@ -4,6 +4,7 @@ ALL:
 
 bundle:
 	esbuild ElementAPI.js --bundle --outfile=bundle/element.js
-
+server:
+	esbuild --servedir=bundle --watch
 clean:
 	rm bundle/*
